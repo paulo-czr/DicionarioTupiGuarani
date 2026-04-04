@@ -1,0 +1,225 @@
+/* --- GERAL --- */
+body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
+
+/* --- NAV-BAR RESPONSIVA --- */
+.navbar { 
+    background-color: white !important; 
+    border-bottom: 1px solid #f0f0f0; 
+    padding: 0.8rem 1.5rem; 
+}
+
+.brand-icon {
+    background-color: #6366f1;
+    border-radius: 12px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title-main { color: #6366f1; font-weight: 700; margin-bottom: 0; line-height: 1; font-size: 1.25rem; }
+.title-sub { color: #ec4899; }
+.subtitle { font-size: 0.65rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* Ajuste dos itens do menu no mobile */
+.nav-pills .nav-link {
+    color: #4b5563;
+    background-color: #f3f4f6;
+    border-radius: 12px;
+    font-weight: 500;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+
+/* Sobrescrevendo a cor padrão do Bootstrap para o botão ativo */
+.nav-pills .nav-link.active {
+    background-color: #6366f1 !important; /* Roxo idêntico ao ícone da logo */
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); /* Sombra suave para dar destaque */
+}
+
+/* Opcional: efeito ao passar o mouse nos outros botões para combinar */
+.nav-pills .nav-link:hover:not(.active) {
+    background-color: #e0e7ff; /* Um roxo bem clarinho no hover */
+    color: #6366f1;
+}
+
+/* --- MAIN RESPONSIVO --- */
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alinha o conteúdo começando do topo */
+    align-items: center;        /* MUDANÇA AQUI: Centraliza tudo horizontalmente */
+    min-height: 80vh;
+    width: 100%;
+    text-align: center;         /* Garante que textos fiquem centralizados */
+    padding: clamp(40px, 8vh, 80px) 20px; 
+}
+
+.welcome-wrapper { text-align: center; max-width: 800px; width: 100%; }
+
+.welcome-title {
+    font-size: clamp(2rem, 10vw, 4rem); 
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.text-purple { color: #6366f1; }
+.text-pink { color: #ec4899; }
+
+.welcome-subtitle {
+    color: #6b7280;
+    font-size: clamp(0.95rem, 4vw, 1.2rem);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* --- MEDIA QUERIES PARA A NAV-BAR --- */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        margin-top: 1rem;
+    }
+    .nav-pills {
+        flex-direction: column; /* Empilha os botões no celular */
+        gap: 10px;
+    }
+    .nav-pills .nav-link {
+        margin-left: 0 !important;
+        width: 100%; /* Botões ocupam a largura toda no mobile */
+        justify-content: center;
+    }
+}
+
+/*""footer/*
+
+/* Estilo base das etiquetas */
+.badge-custom {
+    padding: 8px 20px;
+    border-radius: 50px; /* Deixa bem arredondado como na imagem */
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+/* Cores específicas de cada funcionalidade */
+.badge-insercao { background-color: #e6fcf5; color: #0ca678; }
+.badge-pesquisa { background-color: #e7f5ff; color: #1c7ed6; }
+.badge-remocao { background-color: #fff5f5; color: #c92a2a; }
+.badge-preorder { background-color: #f3f0ff; color: #7048e8; }
+.badge-inorder { background-color: #edf2ff; color: #4263eb; }
+.badge-postorder { background-color: #fff0f6; color: #d6336c; }
+.badge-bfs { background-color: #fff4e6; color: #d9480f; }
+.badge-dfs { background-color: #fff9db; color: #f08c00; }
+
+/* Ajuste no Card para combinar com a imagem anterior */
+.rounded-4 {
+    border-radius: 1.25rem !important;
+}
+
+.shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+/* CONTADOR DE PALAVRAS */
+.status-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    width: 100%;           
+    margin-top: 2rem;       
+    margin-bottom: 3rem;   
+}
+
+.badge-contador {
+    /* Gradiente da imagem */
+    background: linear-gradient(90deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+    color: white;
+    padding: 12px 35px;
+    border-radius: 50px; /* Faz o formato de pílula */
+    font-weight: 500;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); /* Sombra suave */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/*AJUSTE DO NUMERO DO CONTADOR*/
+.numero-destaque {
+    font-weight: 600; 
+    font-size: 1.3rem; 
+}
+
+/*AJUSTE DOS CARD DE FUNCIONALIDADE/*
+/* Estilo Base dos Cards */
+.card-menu {
+    border-radius: 24px;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+}
+
+.card-menu:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+}
+
+/* Cores de Fundo dos Cards (Tons Pastéis) */
+.card-green { background-color: #f0fff4; }
+.card-blue { background-color: #f0f7ff; }
+.card-purple { background-color: #fdf2ff; }
+.card-orange { background-color: #fff9f0; }
+
+/* Estilo dos Ícones */
+.icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Cores dos Ícones (Gradients/Sólidos conforme a imagem) */
+.bg-green-icon { background: linear-gradient(135deg, #00b894, #00d2d3); }
+.bg-blue-icon { background: linear-gradient(135deg, #0984e3, #74b9ff); }
+.bg-purple-icon { background: linear-gradient(135deg, #d63031, #e84393); }
+.bg-orange-icon { background: linear-gradient(135deg, #e17055, #fab1a0); }
+
+/* Texto e Link */
+.card-menu h4 {
+    font-size: 1.2rem;
+    color: #2d3436;
+}
+
+.card-menu p {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.btn-acessar {
+    text-decoration: none;
+    color: #2d3436;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap 0.2s;
+}
+
+.btn-acessar:hover {
+    gap: 12px;
+    color: #6366f1;
+}
