@@ -43,7 +43,7 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); /* Sombra suave para dar destaque */
 }
 
-/* Opcional: efeito ao passar o mouse nos outros botões para combinar */
+/* efeito ao passar o mouse nos outros botões para combinar */
 .nav-pills .nav-link:hover:not(.active) {
     background-color: #e0e7ff; /* Um roxo bem clarinho no hover */
     color: #6366f1;
@@ -56,7 +56,7 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     display: flex;
     flex-direction: column;
     justify-content: flex-start; /* Alinha o conteúdo começando do topo */
-    align-items: center;        /* MUDANÇA AQUI: Centraliza tudo horizontalmente */
+    align-items: center;        /* Centraliza tudo horizontalmente */
     min-height: 80vh;
     width: 100%;
     text-align: center;         /* Garante que textos fiquem centralizados */
