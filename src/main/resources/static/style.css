@@ -6,6 +6,7 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     background-color: white !important; 
     border-bottom: 1px solid #f0f0f0; 
     padding: 0.8rem 1.5rem; 
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); /* Sombra suave para dar destaque */
 }
 
 .brand-icon {
@@ -35,7 +36,7 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
 }
 
 
-/* Sobrescrevendo a cor padrão do Bootstrap para o botão ativo */
+/* Sobrescrevendo a cor padrão do Bootstrap para o botão ativo 'INICIO'*/
 .nav-pills .nav-link.active {
     background-color: #6366f1 !important; /* Roxo idêntico ao ícone da logo */
     color: white !important;
@@ -47,6 +48,7 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     background-color: #e0e7ff; /* Um roxo bem clarinho no hover */
     color: #6366f1;
 }
+
 
 /* --- MAIN RESPONSIVO --- */
 

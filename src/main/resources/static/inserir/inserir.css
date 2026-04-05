@@ -1,0 +1,177 @@
+/* --- GERAL --- */
+body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
+
+/* --- NAV-BAR RESPONSIVA --- */
+.navbar { 
+    background-color: white !important; 
+    border-bottom: 1px solid #f0f0f0; 
+    padding: 0.8rem 1.5rem; 
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); /* Sombra suave para dar destaque */
+}
+
+.brand-icon {
+    background-color: #6366f1;
+    border-radius: 12px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title-main { color: #6366f1; font-weight: 700; margin-bottom: 0; line-height: 1; font-size: 1.25rem; }
+.title-sub { color: #ec4899; }
+.subtitle { font-size: 0.65rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* Ajuste dos itens do menu no mobile */
+.nav-pills .nav-link {
+    color: #4b5563;
+    background-color: #f3f4f6;
+    border-radius: 12px;
+    font-weight: 500;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+
+/* Sobrescrevendo a cor padrão do Bootstrap para o botão ativo 'INICIO'*/
+.nav-pills .nav-link.active {
+    background-color: #6366f1 !important; /* Roxo idêntico ao ícone da logo */
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); /* Sombra suave para dar destaque */
+}
+
+/* Opcional: efeito ao passar o mouse nos outros botões para combinar */
+.nav-pills .nav-link:hover:not(.active) {
+    background-color: #e0e7ff; /* Um roxo bem clarinho no hover */
+    color: #6366f1;
+}
+
+
+/* --- MAIN RESPONSIVO --- */
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alinha o conteúdo começando do topo */
+    align-items: center;        /* MUDANÇA AQUI: Centraliza tudo horizontalmente */
+    min-height: 80vh;
+    width: 100%;
+    text-align: center;         /* Garante que textos fiquem centralizados */
+    padding: clamp(40px, 8vh, 80px) 20px; 
+}
+
+.welcome-wrapper { text-align: center; max-width: 800px; width: 100%; }
+
+.welcome-title {
+    font-size: clamp(2rem, 10vw, 4rem); 
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.text-purple { color: #28b05a; }
+.text-pink { color: #ec4899; }
+
+.welcome-subtitle {
+    color: #6b7280;
+    font-size: clamp(0.95rem, 4vw, 1.2rem);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/*INSERIR PALAVRA TITULO*/
+
+/* Cor do titulo 'inserir palavra'*/
+.text-green-inserir {
+    color: #10b981 !important;
+    font-weight: 800; /*negrito para destacar */
+}
+
+/* Container do Ícone do titulo na main */
+.icon-inserir-container {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    border-radius: 12px; /* Cantos arredondados */
+    padding: 10px; /* Espaço interno para o ícone */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2); /* Sombra verde suave */
+}
+
+/* Cor do ícone do titulo 'inserir palavra' */
+.welcome-subtitle.text-muted {
+    color: #6b7280 !important; 
+}
+
+
+
+
+
+/* Estilo para o formulário de inserção */
+/* --- ESTILO DO CARD DE INSERÇÃO --- */
+
+.form-card {
+    background: #f8fafc; 
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 2.5rem;
+    width: 100% !important;
+    max-width: 950px !important;/*tamanho maximo do card*/
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
+}
+
+.form-title {
+    color: #059669; 
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.form-label {
+    color: #475569;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+/* Inputs arredondados*/
+.custom-input {
+    border-radius: 12px !important;
+    padding: 12px 16px !important;
+    border: 1.5px solid #e2e8f0 !important;
+    transition: all 0.3s ease;
+}
+
+.custom-input:focus {
+    border-color: #10b981 !important;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1) !important;
+    outline: none;
+}
+
+/* Botão Verde Vibrante */
+.btn-inserir-submit {
+    background-color: #10b981 !important;
+    color: white !important;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-inserir-submit:hover {
+    background-color: #059669 !important;
+    transform: translateY(-2px);
+}
+
+.btn-inserir-submit:active {
+    transform: translateY(0);
+}
