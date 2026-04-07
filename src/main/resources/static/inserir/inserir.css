@@ -36,16 +36,15 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
 }
 
 
-/* Sobrescrevendo a cor padrão do Bootstrap para o botão ativo 'INICIO'*/
 .nav-pills .nav-link.active {
     background-color: #6366f1 !important; /* Roxo idêntico ao ícone da logo */
     color: white !important;
     box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); /* Sombra suave para dar destaque */
 }
 
-/* Opcional: efeito ao passar o mouse nos outros botões para combinar */
+/*  efeito ao passar o mouse nos outros botões para combinar */
 .nav-pills .nav-link:hover:not(.active) {
-    background-color: #e0e7ff; /* Um roxo bem clarinho no hover */
+    background-color: #e0e7ff; 
     color: #6366f1;
 }
 
@@ -56,7 +55,7 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     display: flex;
     flex-direction: column;
     justify-content: flex-start; /* Alinha o conteúdo começando do topo */
-    align-items: center;        /* MUDANÇA AQUI: Centraliza tudo horizontalmente */
+    align-items: center;        
     min-height: 80vh;
     width: 100%;
     text-align: center;         /* Garante que textos fiquem centralizados */
@@ -174,4 +173,60 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
 
 .btn-inserir-submit:active {
     transform: translateY(0);
+}
+
+
+/* --- ESTILO das palavras adicionadas --- */
+
+.card-palavra {
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.card-palavra:hover {
+    transform: translateY(-5px); /* Efeito de flutuar ao passar o mouse */
+}
+
+
+/* Estilo resultados inseridos */
+.stat-card {
+    border-radius: 15px;
+    padding: 30px 20px;
+    text-align: center;
+    color: white;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0;
+    opacity: 0.9;
+}
+
+.bg-gradient-green {
+    background: linear-gradient(135deg, #00b09b, #96c93d);
+}
+
+.bg-gradient-blue {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+}
+
+.bg-gradient-purple {
+    background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+}
+
+.bg-gradient-purple {
+    background: linear-gradient(135deg, #8e2de2, #4a00e0);
 }

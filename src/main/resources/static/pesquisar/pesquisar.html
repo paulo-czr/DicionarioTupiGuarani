@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="pesquisar.css">
+    <title>pesquisar</title>
+
+</head>
+
+<body>
+
+    <body>
+        <!-- NAVBAR -->
+        <header>
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand d-flex align-items-center" href="index.html">
+                        <div class="brand-icon me-3">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-0.5-5.11" />
+                                <path d="M4 19.5h16" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h1 class="h4 title-main">Dicionário <span class="title-sub">Tupi-Guarani</span></h1>
+                            <div class="subtitle">Árvore Binária de Busca</div>
+                        </div>
+                    </a>
+
+                    <!-- NAV LINKS PAGINAS -->
+                    <div class="ms-auto">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="../index.html"><span>🏠</span> Início</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../inserir/inserir.html"><span>+</span> Inserir</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../pesquisar/pesquisar.html"><span>🔍</span> Pesquisar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../listar/listar.html"><span>≡</span> Listar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../travessias/travessias.html"><span>🔗</span> Travessias</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="container-fluid container py-5">
+
+            <!-- Titulo Pesquisar Palavra -->
+            <div class="welcome-wrapper d-flex flex-column align-items-center text-center mb-5 mx-auto">
+                <div class="d-flex align-items-center justify-content-center gap-3 mb-2">
+                    <div class="icon-inserir-container">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-0.5-5.11" />
+                            <path d="M4 19.5h16" />
+                        </svg>
+                    </div>
+                    <h1 class="welcome-title text-blue-inserir mb-0">Pesquisar Palavra</h1>
+                </div>
+                <p class="welcome-subtitle text-muted fs-6">
+                    Busque palavras usando a eficiência da Árvore Binária de Busca
+                </p>
+            </div>
+
+            <!-- Pesquisa -->
+            <div class="d-flex justify-content-center">
+                <div class="cartao-pesquisa mt-4 p-4">
+
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <div class="container-icone-busca fundo-azul-busca sombra-busca">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </div>
+                        <h2 class="titulo-busca mb-0 fs-4 fw-bold" style="color: #1a3a3a;">Pesquisar Palavra</h2>
+                    </div>
+
+                    <form id="formulario-pesquisa" class="row g-2 align-items-center">
+
+                        <div class="col">
+                            <input type="text" class="form-control entrada-personalizada py-3 rounded-4 fs-6"
+                                id="campo-tupi" name="campo-tupi" placeholder="Digite a palavra em Tupi-Guarani"
+                                required>
+                        </div>
+
+                        <div class="col-auto">
+                            <button type="submit"
+                                class="btn botao-buscar-enviar d-flex align-items-center gap-2 py-3 px-4 rounded-4">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                                <span>Buscar</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sugestões de Palavras -->
+
+            <div class="d-flex justify-content-center">
+                <div class="cartao-sugestoes mt-4 p-4">
+
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <div class="texto-azul-primario">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                <polyline points="17 6 23 6 23 12"></polyline>
+                            </svg>
+                        </div>
+                        <h3 class="titulo-sugestoes mb-0 fs-5 fw-bold">Sugestões de Palavras</h3>
+                    </div>
+
+                    <div class="row g-2">
+                        <div class="col-6 col-md-3">
+                            <button type="button" class="btn botao-sugestao w-100"
+                                onclick="preencherBusca('abá')">abá</button>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <button type="button" class="btn botao-sugestao w-100"
+                                onclick="preencherBusca('ara')">ara</button>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <button type="button" class="btn botao-sugestao w-100"
+                                onclick="preencherBusca('añetẽ')">añetẽ</button>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <button type="button" class="btn botao-sugestao w-100"
+                                onclick="preencherBusca('jaguar')">jaguar</button>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <button type="button" class="btn botao-sugestao w-100"
+                                onclick="preencherBusca('kaá')">kaá</button>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <button type="button" class="btn botao-sugestao w-100"
+                                onclick="preencherBusca('kunhã')">kunhã</button>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <button type="button" class="btn botao-sugestao w-100"
+                                onclick="preencherBusca('kurumĩ')">kurumĩ</button>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <button type="button" class="btn botao-sugestao w-100"
+                                onclick="preencherBusca('mokoĩ')">mokoĩ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Informativo-->
+            <div class="d-flex justify-content-center">
+                <div class="cartao-informativo-busca mt-4 p-4 text-white">
+
+                    <h3 class="fw-bold mb-4">Como funciona a busca?</h3>
+
+                    <div class="lista-explicativa">
+                        <div class="d-flex align-items-start gap-3 mb-3">
+                            <span class="fs-4">🌳</span>
+                            <p class="mb-0">A <strong>Árvore AVL</strong> organiza as palavras de forma hierárquica e
+                                auto-balanceada.</p>
+                        </div>
+
+                        <div class="d-flex align-items-start gap-3 mb-3">
+                            <span class="fs-4">⚡</span>
+                            <p class="mb-0">Complexidade de busca: <strong>O(log n)</strong> — garantindo eficiência
+                                mesmo com milhares de palavras!</p>
+                        </div>
+
+                        <div class="d-flex align-items-start gap-3">
+                            <span class="fs-4">🎯</span>
+                            <p class="mb-0">Comparações <strong>lexicográficas</strong> guiam a navegação precisa pelos
+                                nós da árvore.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+
+    </body>
+
+</html>

@@ -1,0 +1,253 @@
+/* ================================================================
+   1. CONFIGURAÇÕES GERAIS E BODY
+   ================================================================ */
+body { 
+    font-family: 'Inter', sans-serif; 
+    margin: 0; 
+    padding: 0; 
+    background-color: #f8f9fa; /* Fundo cinza claro para destacar os cards */
+}
+
+/* ================================================================
+   2. BARRA DE NAVEGAÇÃO (NAVBAR)
+   ================================================================ */
+.navbar { 
+    background-color: white !important; 
+    border-bottom: 1px solid #f0f0f0; 
+    padding: 0.8rem 1.5rem; 
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1); 
+}
+/* Atualize a classe .navbar-brand e adicione a .brand-text */
+
+.navbar-brand {
+    display: flex !important;
+    align-items: center;
+    gap: 12px; /* Espaçamento entre o ícone e o texto */
+}
+
+/* Força o container de texto a ser flexível e não quebrar linha */
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.brand-icon {
+    background-color: #6366f1;
+    border-radius: 12px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Impede o ícone de amassar */
+    width: 42px;  /* Tamanho fixo para padronizar */
+    height: 42px;
+}
+
+/* Garante que o H1 não empurre o subtítulo para longe */
+.title-main { 
+    color: #6366f1; 
+    font-weight: 700; 
+    margin-bottom: 0 !important; 
+    line-height: 1.1; 
+    font-size: 1.25rem; 
+}
+
+/* Títulos da logo (Dicionário Tupi-Guarani) */
+.title-main { color: #6366f1; font-weight: 700; margin-bottom: 0; line-height: 1; font-size: 1.25rem; }
+.title-sub { color: #ec4899; }
+.subtitle { font-size: 0.65rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* Estilo dos botões do menu (Links) */
+.nav-pills .nav-link {
+    color: #4b5563;
+    background-color: #f3f4f6;
+    border-radius: 12px;
+    font-weight: 500;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    margin-left: 8px;
+}
+
+/* Botão do menu que está selecionado (Ativo) */
+.nav-pills .nav-link.active {
+    background-color: #6366f1 !important; 
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); 
+}
+
+/* Efeito ao passar o mouse nos links do menu */
+.nav-pills .nav-link:hover:not(.active) {
+    background-color: #e0e7ff; 
+    color: #6366f1;
+}
+
+/* ================================================================
+   3. CABEÇALHO DA PÁGINA (TÍTULO E ÍCONE CENTRAL)
+   ================================================================ */
+.circulo-icone-topo {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #d63031, #e84393) !important;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px; /* Centraliza o ícone horizontalmente */
+    box-shadow: 0 8px 20px rgba(232, 67, 147, 0.4);
+}
+
+/* Cores específicas para as palavras do título */
+.texto-roxo { color: #a55eea !important; font-weight: 700; }
+.texto-rosa { color: #d63031 !important; font-weight: 700; }
+
+/* Subtítulo abaixo do título principal */
+.text-muted {
+    color: #6b7280 !important;
+    font-size: 0.95rem;
+}
+
+/* ================================================================
+   4. CARDS DE ESTATÍSTICAS (RESUMO DO TOPO)
+   ================================================================ */
+.card-estatistica {
+    border-radius: 20px;
+    padding: 25px;
+    color: white !important;
+    border: none;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    height: 100%;
+}
+
+/* Gradientes dos cards de estatística */
+.fundo-grad-roxo { background: linear-gradient(135deg, #d63031, #e84393) !important; }
+.fundo-grad-azul { background: linear-gradient(135deg, #0984e3, #6c5ce7) !important; }
+.fundo-grad-verde { background: linear-gradient(135deg, #00b894, #00d2d3) !important; }
+
+.legenda-estatistica {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    margin-bottom: 10px;
+    color: white !important;
+}
+
+.valor-estatistica {
+    font-size: 2rem;
+    font-weight: 800;
+    color: white !important;
+}
+
+/* ================================================================
+   5. SEÇÃO DO DICIONÁRIO (GRADE DE PALAVRAS)
+   ================================================================ */
+/* Container branco que envolve todos os cards de palavras */
+.container-dicionario {
+    background-color: white;
+    border-radius: 25px;
+    padding: 35px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+/* Ícone de livro rosa ao lado do título "Dicionário Completo" */
+.icone-livro-pequeno {
+    background: linear-gradient(135deg, #e84393, #d63031);
+    padding: 10px;
+    border-radius: 12px;
+}
+
+/* Estilo do card individual de cada palavra */
+.cartao-palavra {
+    background-color: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 15px;
+    padding: 18px 25px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Detalhe da bordinha colorida no lado direito do card */
+.cartao-palavra::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 20%;
+    height: 60%;
+    width: 5px;
+    background: linear-gradient(to bottom, #a55eea, #e84393);
+    border-radius: 5px 0 0 5px;
+}
+
+/* Efeito ao passar o mouse no card da palavra */
+.cartao-palavra:hover {
+    border-color: #d1d5db;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.palavra-tupi { color: #6366f1; font-weight: 700; font-size: 1.15rem; }
+.palavra-portugues { color: #6b7280; font-size: 0.9rem; }
+
+/* Botão da lixeira (aparece apenas no hover) */
+.botao-remover-discreto {
+    background: #fef2f2; 
+    border: 1px solid #fee2e2;
+    font-size: 1rem;
+    color: #ef4444 !important; 
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    opacity: 0; /* Começa invisível */
+}
+
+/* Faz a lixeira aparecer quando o mouse entra no card */
+.cartao-palavra:hover .botao-remover-discreto {
+    opacity: 1;
+}
+
+/* Efeito do botão de lixeira ao ser clicado/focado */
+.botao-remover-discreto:hover {
+    background-color: #ef4444;
+    color: white !important;
+}
+
+/* ================================================================
+   6. CARD INFORMATIVO DE RODAPÉ (AVISO ROXO)
+   ================================================================ */
+.card-informativo-remocao {
+    border-radius: 20px;
+    background: linear-gradient(135deg, #a55eea, #d63031) !important;
+    color: white !important;
+    padding: 25px;
+    box-shadow: 0 10px 20px rgba(165, 94, 234, 0.2);
+    margin-top: 20px;
+}
+
+/* Linhas de texto dentro do card roxo */
+.info-remover-linha {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: white !important;
+}
+
+/* Quadrado semi-transparente atrás dos ícones (lixeira/seta) */
+.icone-info-remover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-size: 1rem;
+}
