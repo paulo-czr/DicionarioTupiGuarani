@@ -1,0 +1,263 @@
+/* --- GERAL --- */
+body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
+
+/* --- NAV-BAR RESPONSIVA --- */
+.navbar { 
+    background-color: white !important; 
+    border-bottom: 1px solid #f0f0f0; 
+    padding: 0.8rem 1.5rem; 
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); /* Sombra suave para dar destaque */
+}
+
+.brand-icon {
+    background-color: #6366f1;
+    border-radius: 12px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title-main { color: #6366f1; font-weight: 700; margin-bottom: 0; line-height: 1; font-size: 1.25rem; }
+.title-sub { color: #ec4899; }
+.subtitle { font-size: 0.65rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* Ajuste dos itens do menu no mobile */
+.nav-pills .nav-link {
+    color: #4b5563;
+    background-color: #f3f4f6;
+    border-radius: 12px;
+    font-weight: 500;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+
+.nav-pills .nav-link.active {
+    background-color: #6366f1 !important; /* Roxo idêntico ao ícone da logo */
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); /* Sombra suave para dar destaque */
+}
+
+/*  efeito ao passar o mouse nos outros botões para combinar */
+.nav-pills .nav-link:hover:not(.active) {
+    background-color: #e0e7ff; 
+    color: #6366f1;
+}
+
+/* --- Main --- */
+.container-icone-lista {
+        background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+        padding: 12px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(236, 72, 153, 0.2);
+    }
+
+    .texto-gradiente-lista {
+        background: linear-gradient(to right, #8b5cf6, #d946ef);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 800;
+        font-size: 2.5rem;
+    }
+
+    .subtitulo-lista {
+        color: #64748b !important;
+        font-weight: 500;
+    }
+
+    /* CARDS  */
+
+    .cartao-estatistica {
+        border-radius: 18px;
+        padding: 24px;
+        color: white;
+        min-height: 140px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease;
+    }
+
+    .cartao-estatistica:hover {
+        transform: translateY(-5px);
+    }
+
+    .rotulo-cartao {
+        font-size: 0.9rem;
+        font-weight: 500;
+        opacity: 0.9;
+        margin-bottom: 10px;
+    }
+
+    .valor-cartao {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin: 0;
+        letter-spacing: -0.5px;
+    }
+
+    .icone-cartao {
+        opacity: 0.8;
+    }
+
+    /* Definição dos Gradientes conforme a imagem */
+    .gradiente-rosa-roxo {
+        background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #db2777 100%);
+    }
+
+    .gradiente-azul-indigo {
+        background: linear-gradient(135deg, #3b82f6 0%, #4f46e5 100%);
+    }
+
+    .gradiente-verde-esmeralda {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    }
+
+
+    /*dicionário completo*/
+
+    /* --- Estilos do Dicionário Completo --- */
+
+.container-dicionario {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.icone-dicionario-wrapper {
+    background: linear-gradient(135deg, #d946ef, #c026d3);
+    padding: 10px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.titulo-dicionario {
+    color: #d946ef;
+    font-weight: 700;
+}
+
+/* Área de Scroll com a barra lateral personalizada */
+.area-rolagem-dicionario {
+    max-height: 450px;
+    overflow-y: auto;
+    padding-right: 12px; /* Espaço para a scrollbar não encostar no card */
+}
+
+.area-rolagem-dicionario::-webkit-scrollbar {
+    width: 6px;
+}
+
+.area-rolagem-dicionario::-webkit-scrollbar-track {
+    background: #f8fafc;
+    border-radius: 10px;
+}
+
+.area-rolagem-dicionario::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #a855f7, #ec4899);
+    border-radius: 10px;
+}
+
+/* Estilo dos Cards de Palavras */
+.cartao-palavra {
+    background-color: #fff;
+    border: 1px solid #f1f5f9;
+    border-radius: 15px;
+    padding: 16px 20px;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.cartao-palavra:hover {
+    border-color: #d946ef;
+    background-color: #fdf4ff;
+    box-shadow: 0 4px 12px rgba(217, 70, 239, 0.08);
+}
+
+.termo-principal {
+    color: #7c3aed;
+    font-weight: 700;
+    margin-bottom: 2px;
+    font-size: 1.1rem;
+}
+
+.traducao-termo {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+/* Lixeira: Invisível por padrão, aparece no Hover do Card */
+.botao-remover-palavra {
+    background-color: #fee2e2;
+    border: none;
+    color: #ef4444;
+    padding: 8px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Efeito de esconder */
+    opacity: 0;
+    transform: translateX(15px);
+    transition: all 0.3s ease;
+}
+
+/* Quando passar o mouse no CARD, a lixeira aparece */
+.cartao-palavra:hover .botao-remover-palavra {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.botao-remover-palavra:hover {
+    background-color: #ef4444;
+    color: white;
+}
+
+/* --- Card Informativo sobre Remoção --- */
+
+.card-informativo-remocao {
+    /* Gradiente idêntico ao da sua imagem */
+    background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #db2777 100%);
+    border-radius: 20px;
+    color: white;
+    box-shadow: 0 10px 25px rgba(219, 39, 119, 0.2);
+}
+
+.titulo-informativo {
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+}
+
+.item-instrucao {
+    background: rgba(255, 255, 255, 0.1); 
+    padding: 10px 15px;
+    border-radius: 12px;
+    transition: transform 0.2s ease;
+}
+
+.item-instrucao:hover {
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.emoji-icone {
+    font-size: 1.4rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.texto-instrucao {
+    font-weight: 500;
+    font-size: 1rem;
+    opacity: 0.95;
+}
