@@ -22,7 +22,7 @@ public class Palavra implements Comparable<Palavra> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
     @Column(nullable = false)
     private String palavra;
     
