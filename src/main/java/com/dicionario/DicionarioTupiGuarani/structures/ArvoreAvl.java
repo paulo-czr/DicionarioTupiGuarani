@@ -1,5 +1,9 @@
 package com.dicionario.DicionarioTupiGuarani.structures;
 
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
 import com.dicionario.DicionarioTupiGuarani.model.Palavra;
 
 public class ArvoreAvl {
@@ -105,9 +109,9 @@ public class ArvoreAvl {
             return new NoAvl(novaPalavra);
         }
 
-        Palavra objPalavra = no.getConteudo();
+        Palavra palavraEntity = no.getConteudo();
 
-        int comparacao = novaPalavra.getPalavra().compareToIgnoreCase(objPalavra.getPalavra());
+        int comparacao = novaPalavra.getPalavra().compareToIgnoreCase(palavraEntity.getPalavra());
 
         if (comparacao < 0) {
             no.setEsquerda(inserirRecursivo(no.getEsquerda(), novaPalavra));
@@ -139,11 +143,12 @@ public class ArvoreAvl {
     }
 
     private NoAvl pesquisarRecursivo(NoAvl no, String termo) {
-        if (no == null) return null;
+        if (no == null)
+            return null;
 
-        Palavra objPalavra = no.getConteudo();
+        Palavra palavraEntity = no.getConteudo();
 
-        int comparacao = termo.compareToIgnoreCase(objPalavra.getPalavra());
+        int comparacao = termo.compareToIgnoreCase(palavraEntity.getPalavra());
 
         if (comparacao == 0)
             return no;
@@ -173,11 +178,12 @@ public class ArvoreAvl {
      * @return O nó resultante após a remoção e balanceamento.
      */
     private NoAvl removerRecursivo(NoAvl no, String palavra) {
-        if (no == null) return null;
+        if (no == null)
+            return null;
 
-        Palavra objPalavra = no.getConteudo();
+        Palavra palavraEntity = no.getConteudo();
 
-        int comparacao = palavra.compareToIgnoreCase(objPalavra.getPalavra());
+        int comparacao = palavra.compareToIgnoreCase(palavraEntity.getPalavra());
 
         if (comparacao < 0) {
             no.setEsquerda(removerRecursivo(no.getEsquerda(), palavra));
@@ -246,4 +252,142 @@ public class ArvoreAvl {
 
         return no;
     }
+
+    /**
+     * Inicia o percurso em Pré-ordem a partir da raiz da árvore.
+     * Raiz, Esquerda, Direita
+     */
+    public void preOrdem() {
+        preOrdemRecursivo(this.raiz);
+    }
+
+    /**
+     * Lógica recursiva para o percurso em Pré-ordem.
+     * 
+     * * @param no O nó atual da recursão sendo visitado.
+     */
+    private void preOrdemRecursivo(NoAvl no) {
+        if (no != null) {
+
+            Palavra palavraEntity = no.getConteudo();
+
+            System.out.print(palavraEntity.getPalavra() + " ");
+
+            preOrdemRecursivo(no.getEsquerda());
+
+            preOrdemRecursivo(no.getDireita());
+        }
+    }
+
+    /**
+     * Inicia o percurso Em Ordem a partir da raiz da árvore.
+     * Esquerda, Raiz, Direita
+     * Ordem Alfabética
+     */
+    public void emOrdem() {
+        emOrdemRecursivo(this.raiz);
+    }
+
+    /**
+     * Lógica recursiva para o percurso Em Ordem.
+     * 
+     * @param no O nó atual da recursão.
+     */
+    private void emOrdemRecursivo(NoAvl no) {
+        if (no != null) {
+
+            Palavra palavraEntity = no.getConteudo();
+
+            emOrdemRecursivo(no.getEsquerda());
+
+            System.out.println(palavraEntity.getPalavra() + ": " + palavraEntity.getSignificado());
+
+            emOrdemRecursivo(no.getDireita());
+        }
+    }
+
+    /**
+     * Inicia o percurso em Pós-ordem a partir da raiz da árvore.
+     * Esquerda, Direita, Raiz
+     */
+    public void posOrdem() {
+        posOrdemRecursivo(this.raiz);
+    }
+
+    /**
+     * Lógica recursiva para o percurso em Pós-ordem.
+     * 
+     * @param no O nó atual da recursão.
+     */
+    private void posOrdemRecursivo(NoAvl no) {
+        if (no != null) {
+            Palavra palavraEntity = no.getConteudo();
+
+            posOrdemRecursivo(no.getEsquerda());
+
+            posOrdemRecursivo(no.getDireita());
+
+            System.out.println("Visitando: " + palavraEntity.getPalavra());
+        }
+    }
+
+    /**
+     * Percorre a árvore em Amplitude, visitando nível por nível.
+     * Não utiliza recursão, utilizando uma Fila (Queue) para gerenciar a ordem de
+     * visita.
+     */
+    public void amplitude() {
+        if (this.raiz == null) {
+            return;
+        }
+
+        Queue<NoAvl> fila = new LinkedList<>();
+        fila.add(this.raiz);
+
+        while (!fila.isEmpty()) {
+            NoAvl noAtual = fila.poll();
+            Palavra palavraEntity = noAtual.getConteudo();
+
+            System.out.print(palavraEntity.getPalavra() + " ");
+
+            if (noAtual.getEsquerda() != null) {
+                fila.add(noAtual.getEsquerda());
+            }
+
+            if (noAtual.getDireita() != null) {
+                fila.add(noAtual.getDireita());
+            }
+        }
+    }
+
+    /**
+     * Percorre a árvore em Profundidade de forma iterativa.
+     * 
+     * Utiliza uma Pilha (Stack) para simular o comportamento da pilha de recursão.
+     */
+    public void profundidade() {
+        if (this.raiz == null) {
+            return;
+        }
+
+        Stack<NoAvl> pilha = new Stack<>();
+        pilha.push(this.raiz);
+
+        while (!pilha.isEmpty()) {
+            NoAvl noAtual = pilha.pop();
+
+            Palavra palavraEntity = noAtual.getConteudo();
+
+            System.out.print(palavraEntity.getPalavra() + " ");
+
+            if (noAtual.getDireita() != null) {
+                pilha.push(noAtual.getDireita());
+            }
+
+            if (noAtual.getEsquerda() != null) {
+                pilha.push(noAtual.getEsquerda());
+            }
+        }
+    }
+
 }
