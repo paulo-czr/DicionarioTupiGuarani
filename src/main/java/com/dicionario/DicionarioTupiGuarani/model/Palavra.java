@@ -22,11 +22,22 @@ public class Palavra implements Comparable<Palavra> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
     @Column(nullable = false)
     private String palavra;
     
     private String significado;
+
+    /**
+     * Construtor que aceita dois textos (Strings) como argumento.
+     * 
+     * @param palavra o termo em Tupi Guarani
+     * @param significado significado traduzido
+     */
+    public Palavra(String palavra, String significado){
+        this.palavra = palavra;
+        this.significado = significado;
+    }
 
     /**
      * Compara esta palavra com outra para definir a ordem de classificação.
