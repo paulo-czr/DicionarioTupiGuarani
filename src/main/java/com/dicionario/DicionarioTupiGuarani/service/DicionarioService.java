@@ -8,12 +8,14 @@ import com.dicionario.DicionarioTupiGuarani.repository.PalavraRepository;
 import com.dicionario.DicionarioTupiGuarani.structures.ArvoreAvl;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class DicionarioService {
 
     private final PalavraRepository repository;
     private final ArvoreAvl arvore = new ArvoreAvl();
+    private List<Palavra> todasAsPalavras;
 
     public DicionarioService(PalavraRepository repository) {
         this.repository = repository;
@@ -24,7 +26,7 @@ public class DicionarioService {
      */
     @PostConstruct
     public void inicializarArvore() {
-        List<Palavra> todasAsPalavras = repository.findAll();
+        todasAsPalavras = repository.findAll();
 
         for (Palavra p : todasAsPalavras) {
             arvore.inserir(p);
@@ -35,12 +37,29 @@ public class DicionarioService {
      * Salva a entidade da Palavra na Arvore e no Banco de Dados
      * 
      * @param palavraEntity Entidade a ser salva no Banco
-     * @return A entidade salva
+     * @return A entidade salva no Banco de Dados
      */
     public Palavra salvarPalavra(Palavra palavraEntity) {
-        Palavra salvaNoBanco = repository.save(palavraEntity);
-        arvore.inserir(salvaNoBanco);
+        verificarPorIdBanco(palavraEntity.getId());
+        verificarPorPalavraArvore(palavraEntity.getPalavra());
 
-        return salvaNoBanco;
+        Palavra palavraSalvaNoBanco = repository.save(palavraEntity);
+        arvore.inserir(palavraSalvaNoBanco);
+
+        return palavraSalvaNoBanco;
+    }
+
+    public Palavra verificarPorIdBanco(Long id){
+        return repository.findById(id).orElseThrow(
+            () -> new EntityNotFoundException("ID da Palavra não encontrado no Banco de Dados")
+        );
+    }
+
+    public Palavra verificarPorPalavraArvore(String palavra){
+        if (arvore.pesquisarPorPalavra(palavra) == null) {
+            throw new EntityNotFoundException("ID da Palavra não encontrado no Banco de Dados");
+        }
+
+        return arvore.pesquisarPorPalavra(palavra);
     }
 }

@@ -129,11 +129,11 @@ public class ArvoreAvl {
     /**
      * Busca uma palavra na árvore a partir do seu termo (String).
      * 
-     * @param termo O termo Tupi-Guarani a ser buscado.
+     * @param palavra A palavra em Tupi-Guarani a ser buscada.
      * @return O objeto Palavra encontrado ou null caso não exista.
      */
-    public Palavra pesquisar(String termo) {
-        NoAvl noEncontrado = pesquisarRecursivo(this.raiz, termo);
+    public Palavra pesquisarPorPalavra(String palavra) {
+        NoAvl noEncontrado = pesquisarRecursivo(this.raiz, palavra);
 
         if (noEncontrado != null)
             return noEncontrado.getConteudo();
@@ -142,22 +142,49 @@ public class ArvoreAvl {
             return null;
     }
 
-    private NoAvl pesquisarRecursivo(NoAvl no, String termo) {
+    private NoAvl pesquisarRecursivo(NoAvl no, String palavra) {
         if (no == null)
             return null;
 
         Palavra palavraEntity = no.getConteudo();
 
-        int comparacao = termo.compareToIgnoreCase(palavraEntity.getPalavra());
+        int comparacao = palavra.compareToIgnoreCase(palavraEntity.getPalavra());
 
         if (comparacao == 0)
             return no;
 
         if (comparacao < 0) {
-            return pesquisarRecursivo(no.getEsquerda(), termo);
+            return pesquisarRecursivo(no.getEsquerda(), palavra);
         } else {
-            return pesquisarRecursivo(no.getDireita(), termo);
+            return pesquisarRecursivo(no.getDireita(), palavra);
         }
+    }
+
+    /**
+     * Busca palavra por ID - Nota: perde desempenho 
+     * 
+     * @param id ID da Palavra na Árvore
+     * @return A Palavra encontrada na Árvore
+     */
+    public Palavra pesquisarPorId(Long id) {
+        return pesquisarPorIdRecursivo(this.raiz, id);
+    }
+
+    private Palavra pesquisarPorIdRecursivo(NoAvl no, Long id) {
+        if (no == null)
+            return null;
+
+        Palavra palavraEntity = no.getConteudo();
+
+        if (palavraEntity.getId().equals(id)) {
+            return no.getConteudo();
+        }
+
+        Palavra encontradaEsq = pesquisarPorIdRecursivo(no.getEsquerda(), id);
+        if (encontradaEsq != null)
+            return encontradaEsq;
+
+        return pesquisarPorIdRecursivo(no.getDireita(), id);
     }
 
     /**
