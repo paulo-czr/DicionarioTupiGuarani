@@ -33,7 +33,10 @@ public class ArvoreAvl {
     private int getFatorBalanceamento(NoAvl no) {
         if (no == null)
             return 0;
-        return getAltura(no.getEsquerda()) - getAltura(no.getDireita());
+        NoAvl noEsq = no.getEsquerda();
+        NoAvl noDir = no.getDireita();
+        
+        return getAltura(noEsq) - getAltura(noDir);
     }
 
     /**
@@ -108,16 +111,17 @@ public class ArvoreAvl {
         if (no == null) {
             return new NoAvl(novaPalavra);
         }
-
+        NoAvl noEsq = no.getEsquerda();
+        NoAvl noDir = no.getDireita();
         Palavra palavraEntity = no.getConteudo();
 
         int comparacao = novaPalavra.getPalavra().compareToIgnoreCase(palavraEntity.getPalavra());
 
         if (comparacao < 0) {
-            no.setEsquerda(inserirRecursivo(no.getEsquerda(), novaPalavra));
+            no.setEsquerda(inserirRecursivo(noEsq, novaPalavra));
 
         } else if (comparacao > 0) {
-            no.setDireita(inserirRecursivo(no.getDireita(), novaPalavra));
+            no.setDireita(inserirRecursivo(noDir, novaPalavra));
 
         } else {
             return no;
@@ -161,7 +165,7 @@ public class ArvoreAvl {
     }
 
     /**
-     * Busca palavra por ID - Nota: perde desempenho 
+     * Busca palavra por ID - Nota: perde desempenho
      * 
      * @param id ID da Palavra na Árvore
      * @return A Palavra encontrada na Árvore
@@ -258,21 +262,23 @@ public class ArvoreAvl {
     private NoAvl rebalancear(NoAvl no) {
         atualizarAltura(no);
         int fatorBalanceamento = getFatorBalanceamento(no);
+        NoAvl noEsq = no.getEsquerda();
+        NoAvl noDir = no.getDireita();
 
         // Desbalanceamento à Esquerda
         if (fatorBalanceamento > 1) {
-            // Caso Esquerda-Direita: Necessita rotação dupla
-            if (getFatorBalanceamento(no.getEsquerda()) < 0) {
-                no.setEsquerda(rotacionarEsquerda(no.getEsquerda()));
+            // Ponta do Joelho apontando para a ESQUERDA: Necessita rotação dupla
+            if (getFatorBalanceamento(noEsq) < 0) {
+                no.setEsquerda(rotacionarEsquerda(noEsq));
             }
             return rotacionarDireita(no);
         }
 
         // Desbalanceamento à Direita
         if (fatorBalanceamento < -1) {
-            // Caso Direita-Esquerda: Necessita rotação dupla
-            if (getFatorBalanceamento(no.getDireita()) > 0) {
-                no.setDireita(rotacionarDireita(no.getDireita()));
+            // Ponta do Joelho apontando para a DIREITA: Necessita rotação dupla
+            if (getFatorBalanceamento(noDir) > 0) {
+                no.setDireita(rotacionarDireita(noDir));
             }
             return rotacionarEsquerda(no);
         }
