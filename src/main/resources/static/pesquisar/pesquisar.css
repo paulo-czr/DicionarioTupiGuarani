@@ -1,7 +1,7 @@
 /* --- GERAL --- */
 body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
 
-/* --- NAV-BAR RESPONSIVA --- */
+/* --- BARRA DE NAVEGACAO RESPONSIVA --- */
 .navbar { 
     background-color: white !important; 
     border-bottom: 1px solid #f0f0f0; 
@@ -9,7 +9,7 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); /* Sombra suave para dar destaque */
 }
 
-.brand-icon {
+.logo-icone {
     background-color: #6366f1;
     border-radius: 12px;
     padding: 8px;
@@ -18,9 +18,9 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     justify-content: center;
 }
 
-.title-main { color: #6366f1; font-weight: 700; margin-bottom: 0; line-height: 1; font-size: 1.25rem; }
-.title-sub { color: #ec4899; }
-.subtitle { font-size: 0.65rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+.titulo-principal { color: #6366f1; font-weight: 700; margin-bottom: 0; line-height: 1; font-size: 1.25rem; }
+.titulo-secundario { color: #ec4899; }
+.subtitulo { font-size: 0.65rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
 
 /* Ajuste dos itens do menu no mobile */
 .nav-pills .nav-link {
@@ -35,8 +35,7 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     transition: all 0.2s;
 }
 
-
-/* Sobrescrevendo a cor padrão do Bootstrap para o botão ativo 'INICIO'*/
+/* Sobrescrevendo a cor padrão do Bootstrap para o botão ativo */
 .nav-pills .nav-link.active {
     background-color: #6366f1 !important; /* Roxo idêntico ao ícone da logo */
     color: white !important;
@@ -49,9 +48,9 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     color: #6366f1;
 }
 
-/* --- MAIN RESPONSIVO --- */
+/* --- CONTEUDO PRINCIPAL RESPONSIVO --- */
 
-.main-container {
+.container-principal {
     display: flex;
     flex-direction: column;
     justify-content: flex-start; /* Alinha o conteúdo começando do topo */
@@ -62,9 +61,9 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     padding: clamp(40px, 8vh, 80px) 20px; 
 }
 
-.welcome-wrapper { text-align: center; max-width: 800px; width: 100%; }
+.boas-vindas-wrapper { text-align: center; max-width: 800px; width: 100%; }
 
-.welcome-title {
+.boas-vindas-titulo {
     font-size: clamp(2rem, 10vw, 4rem); 
     font-weight: 800;
     letter-spacing: -1.5px;
@@ -72,26 +71,26 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     line-height: 1.1;
 }
 
-.text-purple { color: #28b05a; }
-.text-pink { color: #ec4899; }
+.texto-roxo { color: #28b05a; }
+.texto-rosa { color: #ec4899; }
 
-.welcome-subtitle {
+.boas-vindas-subtitulo {
     color: #6b7280;
     font-size: clamp(0.95rem, 4vw, 1.2rem);
     max-width: 500px;
     margin: 0 auto;
 }
 
-/*INSERIR PALAVRA TITULO*/
+/* PESQUISAR PALAVRA TITULO */
 
-/* Cor do titulo 'inserir palavra'*/
-.text-blue-inserir {
+/* Cor do titulo 'pesquisar palavra' */
+.texto-azul-inserir {
     color: #1d4ed8 !important;
-    font-weight: 800; /*negrito para destacar */
+    font-weight: 800; /* negrito para destacar */
 }
 
 /* Container do Ícone do titulo na main */
-.icon-inserir-container {
+.container-icone-inserir {
     background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
     border-radius: 12px; /* Cantos arredondados */
     padding: 10px; /* Espaço interno para o ícone */
@@ -101,20 +100,19 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2); /* Sombra azul suave */
 }
 
-/* Cor do ícone do titulo  */
-.welcome-subtitle.text-muted {
+/* Cor do ícone do titulo */
+.boas-vindas-subtitulo.text-muted {
     color: #6b7280 !important; 
 }
 
-/* --- ESTILO DO CARD DE PESQUISA --- */
+/* --- ESTILO DO CARTAO DE PESQUISA --- */
 
 .cartao-pesquisa {
     background-color: white;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     width: 100%;
     max-width: 900px;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); /* Sombra  */
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); /* Sombra */
 }
 
 .container-icone-busca {
@@ -137,8 +135,7 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     letter-spacing: -0.5px;
 }
 
-
-/* --- ENTRADA E BOTÃO --- */
+/* --- ENTRADA E BOTAO --- */
 
 .entrada-personalizada {
     border: 1px solid #e5e7eb;
@@ -163,15 +160,14 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
 }
 
-
-/* --- ESTILO DAS SUGESTÕES --- */
+/* --- ESTILO DAS SUGESTOES --- */
 
 .cartao-sugestoes {
     background-color: white;
     border-radius: 20px;
     width: 100%;
     max-width: 900px;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); /* Sombra suave  */
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); /* Sombra suave */
 }
 
 .titulo-sugestoes {
@@ -199,7 +195,7 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     transform: scale(1.03); 
 }
 
-/* --- ESTILO DO CARD INFORMATIVO AZUL --- */
+/* --- ESTILO DO CARTAO INFORMATIVO AZUL --- */
 
 .cartao-informativo-busca {
     background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); /* Gradiente Azul para Roxo */

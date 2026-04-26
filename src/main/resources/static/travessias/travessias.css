@@ -1,15 +1,15 @@
 /* --- GERAL --- */
 body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
 
-/* --- NAV-BAR RESPONSIVA --- */
+/* --- BARRA DE NAVEGAÇÃO RESPONSIVA --- */
 .navbar { 
     background-color: white !important; 
     border-bottom: 1px solid #f0f0f0; 
     padding: 0.8rem 1.5rem; 
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); /* Sombra suave para dar destaque */
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); 
 }
 
-.brand-icon {
+.logo-icone {
     background-color: #6366f1;
     border-radius: 12px;
     padding: 8px;
@@ -18,11 +18,11 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     justify-content: center;
 }
 
-.title-main { color: #6366f1; font-weight: 700; margin-bottom: 0; line-height: 1; font-size: 1.25rem; }
-.title-sub { color: #ec4899; }
-.subtitle { font-size: 0.65rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+.titulo-principal { color: #6366f1; font-weight: 700; margin-bottom: 0; line-height: 1; font-size: 1.25rem; }
+.titulo-secundario { color: #ec4899; }
+.subtitulo { font-size: 0.65rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
 
-/* Ajuste dos itens do menu no mobile */
+/* Itens do menu */
 .nav-pills .nav-link {
     color: #4b5563;
     background-color: #f3f4f6;
@@ -35,97 +35,86 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     transition: all 0.2s;
 }
 
-
 .nav-pills .nav-link.active {
-    background-color: #6366f1 !important; /* Roxo idêntico ao ícone da logo */
+    background-color: #6366f1 !important;
     color: white !important;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); /* Sombra suave para dar destaque */
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
-/*  efeito ao passar o mouse nos outros botões para combinar */
 .nav-pills .nav-link:hover:not(.active) {
     background-color: #e0e7ff; 
     color: #6366f1;
 }
 
-/* --- Main --- */
+/* --- CONTEÚDO PRINCIPAL (LISTA) --- */
 .container-icone-lista {
-        background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
-        padding: 12px;
-        border-radius: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 4px 15px rgba(236, 72, 153, 0.2);
-    }
+    background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+    padding: 12px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(236, 72, 153, 0.2);
+}
 
-    .texto-gradiente-lista {
-        background: linear-gradient(to right, #8b5cf6, #d946ef);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-weight: 800;
-        font-size: 2.5rem;
-    }
+.texto-gradiente-lista {
+    background: linear-gradient(to right, #8b5cf6, #d946ef);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    font-size: 2.5rem;
+}
 
-    .subtitulo-lista {
-        color: #64748b !important;
-        font-weight: 500;
-    }
+.subtitulo-lista {
+    color: #64748b !important;
+    font-weight: 500;
+}
 
-    /* CARDS  */
+/* CARTOES DE ESTATÍSTICA */
+.cartao-estatistica {
+    border-radius: 18px;
+    padding: 24px;
+    color: white;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
 
-    .cartao-estatistica {
-        border-radius: 18px;
-        padding: 24px;
-        color: white;
-        min-height: 140px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-        transition: transform 0.3s ease;
-    }
+.cartao-estatistica:hover {
+    transform: translateY(-5px);
+}
 
-    .cartao-estatistica:hover {
-        transform: translateY(-5px);
-    }
+.rotulo-cartao {
+    font-size: 0.9rem;
+    font-weight: 500;
+    opacity: 0.9;
+    margin-bottom: 10px;
+}
 
-    .rotulo-cartao {
-        font-size: 0.9rem;
-        font-weight: 500;
-        opacity: 0.9;
-        margin-bottom: 10px;
-    }
+.valor-cartao {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
 
-    .valor-cartao {
-        font-size: 2.2rem;
-        font-weight: 700;
-        margin: 0;
-        letter-spacing: -0.5px;
-    }
+/* Gradientes dos Cartões */
+.gradiente-rosa-roxo {
+    background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #db2777 100%);
+}
 
-    .icone-cartao {
-        opacity: 0.8;
-    }
+.gradiente-azul-indigo {
+    background: linear-gradient(135deg, #3b82f6 0%, #4f46e5 100%);
+}
 
-    /* Definição dos Gradientes conforme a imagem */
-    .gradiente-rosa-roxo {
-        background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #db2777 100%);
-    }
+.gradiente-verde-esmeralda {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
 
-    .gradiente-azul-indigo {
-        background: linear-gradient(135deg, #3b82f6 0%, #4f46e5 100%);
-    }
-
-    .gradiente-verde-esmeralda {
-        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    }
-
-
-    /*dicionário completo*/
-
-    /* --- Estilos do Dicionário Completo --- */
-
+/* --- DICIONÁRIO COMPLETO --- */
 .container-dicionario {
     background-color: white;
     border-radius: 20px;
@@ -146,11 +135,11 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     font-weight: 700;
 }
 
-/* Área de Scroll com a barra lateral personalizada */
+/* Barra de Rolagem Personalizada */
 .area-rolagem-dicionario {
     max-height: 450px;
     overflow-y: auto;
-    padding-right: 12px; /* Espaço para a scrollbar não encostar no card */
+    padding-right: 12px;
 }
 
 .area-rolagem-dicionario::-webkit-scrollbar {
@@ -167,7 +156,7 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     border-radius: 10px;
 }
 
-/* Estilo dos Cards de Palavras */
+/* Cartões de Palavras Individuais */
 .cartao-palavra {
     background-color: #fff;
     border: 1px solid #f1f5f9;
@@ -195,7 +184,7 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     font-size: 0.9rem;
 }
 
-/* Lixeira: Invisível por padrão, aparece no Hover do Card */
+/* Botão de Remover (Lixeira) */
 .botao-remover-palavra {
     background-color: #fee2e2;
     border: none;
@@ -205,14 +194,11 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    /* Efeito de esconder */
     opacity: 0;
     transform: translateX(15px);
     transition: all 0.3s ease;
 }
 
-/* Quando passar o mouse no CARD, a lixeira aparece */
 .cartao-palavra:hover .botao-remover-palavra {
     opacity: 1;
     transform: translateX(0);
@@ -223,10 +209,8 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     color: white;
 }
 
-/* --- Card Informativo sobre Remoção --- */
-
+/* --- CARD INFORMATIVO SOBRE REMOÇÃO --- */
 .card-informativo-remocao {
-    /* Gradiente idêntico ao da sua imagem */
     background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #db2777 100%);
     border-radius: 20px;
     color: white;

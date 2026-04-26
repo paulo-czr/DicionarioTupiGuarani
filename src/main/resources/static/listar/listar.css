@@ -17,7 +17,6 @@ body {
     padding: 0.8rem 1.5rem; 
     box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1); 
 }
-/* Atualize a classe .navbar-brand e adicione a .brand-text */
 
 .navbar-brand {
     display: flex !important;
@@ -32,7 +31,7 @@ body {
     justify-content: center;
 }
 
-.brand-icon {
+.logo-icone {
     background-color: #6366f1;
     border-radius: 12px;
     padding: 8px;
@@ -45,7 +44,7 @@ body {
 }
 
 /* Garante que o H1 não empurre o subtítulo para longe */
-.title-main { 
+.titulo-principal { 
     color: #6366f1; 
     font-weight: 700; 
     margin-bottom: 0 !important; 
@@ -54,9 +53,8 @@ body {
 }
 
 /* Títulos da logo (Dicionário Tupi-Guarani) */
-.title-main { color: #6366f1; font-weight: 700; margin-bottom: 0; line-height: 1; font-size: 1.25rem; }
-.title-sub { color: #ec4899; }
-.subtitle { font-size: 0.65rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+.titulo-secundario { color: #ec4899; }
+.subtitulo { font-size: 0.65rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
 
 /* Estilo dos botões do menu (Links) */
 .nav-pills .nav-link {
@@ -113,7 +111,7 @@ body {
 /* ================================================================
    4. CARDS DE ESTATÍSTICAS (RESUMO DO TOPO)
    ================================================================ */
-.card-estatistica {
+.cartao-estatistica {
     border-radius: 20px;
     padding: 25px;
     color: white !important;
@@ -123,11 +121,11 @@ body {
 }
 
 /* Gradientes dos cards de estatística */
-.fundo-grad-roxo { background: linear-gradient(135deg, #d63031, #e84393) !important; }
-.fundo-grad-azul { background: linear-gradient(135deg, #0984e3, #6c5ce7) !important; }
-.fundo-grad-verde { background: linear-gradient(135deg, #00b894, #00d2d3) !important; }
+.gradiente-rosa-roxo { background: linear-gradient(135deg, #d63031, #e84393) !important; }
+.gradiente-azul-indigo { background: linear-gradient(135deg, #0984e3, #6c5ce7) !important; }
+.gradiente-verde-esmeralda { background: linear-gradient(135deg, #00b894, #00d2d3) !important; }
 
-.legenda-estatistica {
+.rotulo-cartao {
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -136,7 +134,7 @@ body {
     color: white !important;
 }
 
-.valor-estatistica {
+.valor-cartao {
     font-size: 2rem;
     font-weight: 800;
     color: white !important;
@@ -154,7 +152,7 @@ body {
 }
 
 /* Ícone de livro rosa ao lado do título "Dicionário Completo" */
-.icone-livro-pequeno {
+.icone-dicionario-wrapper {
     background: linear-gradient(135deg, #e84393, #d63031);
     padding: 10px;
     border-radius: 12px;
@@ -188,11 +186,11 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-.palavra-tupi { color: #6366f1; font-weight: 700; font-size: 1.15rem; }
-.palavra-portugues { color: #6b7280; font-size: 0.9rem; }
+.termo-principal { color: #6366f1; font-weight: 700; font-size: 1.15rem; }
+.traducao-termo { color: #6b7280; font-size: 0.9rem; }
 
 /* Botão da lixeira (aparece apenas no hover) */
-.botao-remover-discreto {
+.botao-remover-palavra {
     background: #fef2f2; 
     border: 1px solid #fee2e2;
     font-size: 1rem;
@@ -209,12 +207,12 @@ body {
 }
 
 /* Faz a lixeira aparecer quando o mouse entra no card */
-.cartao-palavra:hover .botao-remover-discreto {
+.cartao-palavra:hover .botao-remover-palavra {
     opacity: 1;
 }
 
 /* Efeito do botão de lixeira ao ser clicado/focado */
-.botao-remover-discreto:hover {
+.botao-remover-palavra:hover {
     background-color: #ef4444;
     color: white !important;
 }
@@ -232,7 +230,7 @@ body {
 }
 
 /* Linhas de texto dentro do card roxo */
-.info-remover-linha {
+.item-instrucao {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
@@ -240,7 +238,7 @@ body {
 }
 
 /* Quadrado semi-transparente atrás dos ícones (lixeira/seta) */
-.icone-info-remover {
+.emoji-icone {
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 8px;
     width: 32px;

@@ -15,7 +15,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <a class="navbar-brand d-flex align-items-center" href="../index.html">
-                    <div class="brand-icon me-3">
+                    <div class="logo-icone me-3">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round">
                             <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-0.5-5.11" />
@@ -24,10 +24,10 @@
                     </div>
 
                     <div class="d-flex flex-column">
-                        <h1 class="h4 title-main mb-0" style="line-height: 1.2;">
-                            Dicionário <span class="title-sub">Tupi-Guarani</span>
+                        <h1 class="h4 titulo-principal mb-0" style="line-height: 1.2;">
+                            Dicionário <span class="titulo-secundario">Tupi-Guarani</span>
                         </h1>
-                        <div class="subtitle" style="line-height: 1;">Árvore AVL</div>
+                        <div class="subtitulo" style="line-height: 1;">Árvore AVL</div>
                     </div>
                 </a>
 
@@ -43,11 +43,10 @@
                             <a class="nav-link" href="../pesquisar/pesquisar.html"><span>🔍</span> Pesquisar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="listar.html"><span>≡</span> Listar</a>
+                            <a class="nav-link" href="../listar/listar.html"><span>≡</span> Listar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="../travessias/travessias.html"><span>🔗</span>
-                                Travessias</a>
+                            <a class="nav-link active" href="travessias.html"><span>🔗</span> Travessias</a>
                         </li>
                     </ul>
                 </div>
@@ -55,11 +54,9 @@
         </nav>
     </header>
 
-
     <main class="container-fluid container py-5">
 
-        <!-- Titulo Listar remover Palavra -->
-        <div class="wrapper-boas-vindas d-flex flex-column align-items-center text-center mb-5 mx-auto">
+        <div class="boas-vindas-wrapper d-flex flex-column align-items-center text-center mb-5 mx-auto">
             <div class="d-flex align-items-center justify-content-center gap-3 mb-2">
                 <div class="container-icone-lista">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
@@ -79,8 +76,6 @@
             </p>
         </div>
 
-        <!-- Cartões de estatísticas -->
-
         <div class="row g-4 mb-5">
             <div class="col-md-4">
                 <div class="cartao-estatistica gradiente-rosa-roxo">
@@ -92,7 +87,7 @@
                                 <path d="M12 20V10M18 20V4M6 20v-4" />
                             </svg>
                         </div>
-                        <h2 class="valor-cartao">20</h2>
+                        <h2 class="valor-cartao" id="contador-total">20</h2>
                     </div>
                 </div>
             </div>
@@ -112,7 +107,7 @@
                                 <circle cx="3" cy="18" r="1" fill="currentColor"></circle>
                             </svg>
                         </div>
-                        <h2 class="valor-cartao">abá</h2>
+                        <h2 class="valor-cartao" id="primeira-palavra">abá</h2>
                     </div>
                 </div>
             </div>
@@ -132,13 +127,11 @@
                                 <circle cx="3" cy="18" r="1" fill="currentColor"></circle>
                             </svg>
                         </div>
-                        <h2 class="valor-cartao">água</h2>
+                        <h2 class="valor-cartao" id="ultima-palavra">água</h2>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Dicionário Completo -->
 
         <div class="container-dicionario p-4">
             <div class="d-flex align-items-center gap-3 mb-4">
@@ -151,87 +144,51 @@
                 </div>
                 <div>
                     <h3 class="titulo-dicionario mb-0">Dicionário Completo</h3>
-                    <small class="text-muted">20 palavras cadastradas</small>
+                    <small class="text-muted"><span id="contador-lista">20</span> palavras cadastradas</small>
                 </div>
             </div>
 
             <div class="area-rolagem-dicionario">
-                <div class="row g-3">
-
+                <div class="row g-3" id="lista-palavras-container">
                     <div class="col-md-6">
                         <div class="cartao-palavra d-flex justify-content-between align-items-center">
                             <div class="conteudo-palavra">
                                 <h5 class="termo-principal">abá</h5>
                                 <p class="traducao-termo mb-0">Homem, pessoa</p>
                             </div>
-
                             <button class="botao-remover-palavra" title="Remover palavra">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="3 6 5 6 21 6"></polyline>
-                                    <path
-                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                    </path>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                     <line x1="10" y1="11" x2="10" y2="17"></line>
                                     <line x1="14" y1="11" x2="14" y2="17"></line>
                                 </svg>
                             </button>
                         </div>
                     </div>
-
-                    <div class="col-md-6">
-                        <div class="cartao-palavra d-flex justify-content-between align-items-center">
-                            <div class="conteudo-palavra">
-                                <h5 class="termo-principal">ara</h5>
-                                <p class="traducao-termo mb-0">Dia</p>
-                            </div>
-
-                            <button class="botao-remover-palavra" title="Remover palavra">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="3 6 5 6 21 6"></polyline>
-                                    <path
-                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                    </path>
-                                    <line x1="10" y1="11" x2="10" y2="17"></line>
-                                    <line x1="14" y1="11" x2="14" y2="17"></line>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
 
-        <!-- sobre -->
-
         <div class="card-informativo-remocao p-4 mt-4">
             <h4 class="titulo-informativo mb-4">Sobre a Remoção</h4>
-
             <div class="lista-instrucoes">
                 <div class="item-instrucao d-flex align-items-center gap-3 mb-3">
                     <span class="emoji-icone">🗑️</span>
                     <p class="texto-instrucao mb-0">Clique no ícone da lixeira para remover uma palavra</p>
                 </div>
-
                 <div class="item-instrucao d-flex align-items-center gap-3 mb-3">
                     <span class="emoji-icone">🔄</span>
                     <p class="texto-instrucao mb-0">A árvore é reorganizada automaticamente após a remoção</p>
                 </div>
-
                 <div class="item-instrucao d-flex align-items-center gap-3">
                     <span class="emoji-icone">⚖️</span>
                     <p class="texto-instrucao mb-0">Três casos de remoção: sem filhos, um filho ou dois filhos</p>
                 </div>
             </div>
         </div>
-
     </main>
-
-
-
-
 </body>
 
 </html>

@@ -17,7 +17,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <a class="navbar-brand d-flex align-items-center" href="../index.html">
-                    <div class="brand-icon me-3">
+                    <div class="logo-icone me-3">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round">
                             <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-0.5-5.11" />
@@ -26,10 +26,10 @@
                     </div>
 
                     <div class="d-flex flex-column">
-                        <h1 class="h4 title-main mb-0" style="line-height: 1.2;">
-                            Dicionário <span class="title-sub">Tupi-Guarani</span>
+                        <h1 class="h4 titulo-principal mb-0" style="line-height: 1.2;">
+                            Dicionário <span class="titulo-secundario">Tupi-Guarani</span>
                         </h1>
-                        <div class="subtitle" style="line-height: 1;">Árvore AVL</div>
+                        <div class="subtitulo" style="line-height: 1;">Árvore AVL</div>
                     </div>
                 </a>
 
@@ -80,39 +80,39 @@
 
         <div class="row g-4 mb-5">
             <div class="col-md-4">
-                <div class="card-estatistica fundo-grad-roxo d-flex flex-column justify-content-between">
+                <div class="cartao-estatistica gradiente-rosa-roxo d-flex flex-column justify-content-between">
                     <div class="d-flex justify-content-between align-items-start">
-                        <div class="legenda-estatistica">Total de Palavras</div>
+                        <div class="rotulo-cartao">Total de Palavras</div>
                         <span>📊</span>
                     </div>
-                    <div class="valor-estatistica" id="total-palavras">19</div>
+                    <div class="valor-cartao" id="total-palavras">19</div>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <div class="card-estatistica fundo-grad-azul d-flex flex-column justify-content-between">
+                <div class="cartao-estatistica gradiente-azul-indigo d-flex flex-column justify-content-between">
                     <div class="d-flex justify-content-between align-items-start">
-                        <div class="legenda-estatistica">Primeira Palavra</div>
+                        <div class="rotulo-cartao">Primeira Palavra</div>
                         <span>≡</span>
                     </div>
-                    <div class="valor-estatistica fs-3" id="primeira-palavra">ara</div>
+                    <div class="valor-cartao fs-3" id="primeira-palavra">ara</div>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <div class="card-estatistica fundo-grad-verde d-flex flex-column justify-content-between">
+                <div class="cartao-estatistica gradiente-verde-esmeralda d-flex flex-column justify-content-between">
                     <div class="d-flex justify-content-between align-items-start">
-                        <div class="legenda-estatistica">Última Palavra</div>
+                        <div class="rotulo-cartao">Última Palavra</div>
                         <span>≡</span>
                     </div>
-                    <div class="valor-estatistica fs-3" id="ultima-palavra">água</div>
+                    <div class="valor-cartao fs-3" id="ultima-palavra">água</div>
                 </div>
             </div>
         </div>
 
         <div class="container-dicionario shadow-sm mb-4">
             <div class="d-flex align-items-center mb-4">
-                <div class="icone-livro-pequeno me-3">
+                <div class="icone-dicionario-wrapper me-3">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                         <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-0.5-5.11" />
                     </svg>
@@ -127,19 +127,19 @@
                 <div class="col-md-6">
                     <div class="cartao-palavra d-flex justify-content-between align-items-center">
                         <div>
-                            <div class="palavra-tupi">ara</div>
-                            <div class="palavra-portugues">Dia</div>
+                            <div class="termo-principal">ara</div>
+                            <div class="traducao-termo">Dia</div>
                         </div>
-                        <button class="botao-remover-discreto" title="Remover">🗑️</button>
+                        <button class="botao-remover-palavra" title="Remover">🗑️</button>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="cartao-palavra d-flex justify-content-between align-items-center">
                         <div>
-                            <div class="palavra-tupi">añetẽ</div>
-                            <div class="palavra-portugues">Verdadeiro</div>
+                            <div class="termo-principal">añetẽ</div>
+                            <div class="traducao-termo">Verdadeiro</div>
                         </div>
-                        <button class="botao-remover-discreto" title="Remover">🗑️</button>
+                        <button class="botao-remover-palavra" title="Remover">🗑️</button>
                     </div>
                 </div>
             </div>
@@ -147,16 +147,16 @@
 
         <div class="card-informativo-remocao p-4 text-white">
             <h5 class="fw-bold mb-3">Sobre a Remoção</h5>
-            <div class="info-remover-linha">
-                <div class="icone-info-remover">🗑️</div>
+            <div class="item-instrucao">
+                <div class="emoji-icone">🗑️</div>
                 <span>Clique no ícone da lixeira para remover uma palavra</span>
             </div>
-            <div class="info-remover-linha">
-                <div class="icone-info-remover">🔄</div>
+            <div class="item-instrucao">
+                <div class="emoji-icone">🔄</div>
                 <span>A árvore é reorganizada automaticamente após a remoção</span>
             </div>
-            <div class="info-remover-linha">
-                <div class="icone-info-remover">⚖️</div>
+            <div class="item-instrucao">
+                <div class="emoji-icone">⚖️</div>
                 <span>Três casos de remoção: sem filhos, um filho ou dois filhos</span>
             </div>
         </div>
@@ -165,5 +165,3 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
-</html>

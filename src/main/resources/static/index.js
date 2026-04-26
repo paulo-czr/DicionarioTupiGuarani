@@ -1,14 +1,21 @@
-
-// funcao para atualizar o contador de palavras no rodape
-//novo valor é o numero de palavras que queremos mostrar
-
+// Função para atualizar o contador de palavras no rodapé
+// novoValor é o número de palavras que queremos mostrar
 function atualizarContador(novoValor) {
-    document.getElementById('contador-palavras').innerText = novoValor;
+    const elementoContador = document.getElementById('contador-palavras');
+    
+    if (elementoContador) {
+        elementoContador.innerText = novoValor;
+    }
 }
 
-// Exemplo: Quando o site carrega, ele define como 20
-atualizarContador(20);
+// Exemplo: Quando o site carrega, ele define como 20 (apenas ilustrativo)
+document.addEventListener('DOMContentLoaded', () => {
+    atualizarContador(20);
+});
 
-// Exemplo se as palavras estivessem num Array:
-const total = minhaArvore.contarNos(); 
-document.getElementById('contador-palavras').innerText = total;
+// Exemplo se as palavras estivessem em uma estrutura de Árvore:
+// Supondo que 'minhaArvore' seja a instância da sua Árvore AVL
+/*
+const totalPalavras = minhaArvore.contarNos(); 
+atualizarContador(totalPalavras);
+*/
