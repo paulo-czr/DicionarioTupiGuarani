@@ -1,5 +1,11 @@
 package com.dicionario.DicionarioTupiGuarani.structures;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.Stack;
+
 import com.dicionario.DicionarioTupiGuarani.model.Palavra;
 
 public class ArvoreAvl {
@@ -29,7 +35,10 @@ public class ArvoreAvl {
     private int getFatorBalanceamento(NoAvl no) {
         if (no == null)
             return 0;
-        return getAltura(no.getEsquerda()) - getAltura(no.getDireita());
+        NoAvl noEsq = no.getEsquerda();
+        NoAvl noDir = no.getDireita();
+
+        return getAltura(noEsq) - getAltura(noDir);
     }
 
     /**
@@ -84,6 +93,63 @@ public class ArvoreAvl {
     }
 
     /**
+     * Lista todas as Palavras Em Ordem alfabética
+     * 
+     * @return Lista com todas as palavras Em Ordem
+     */
+    public List<Palavra> listarPalavrasEmOrdem() {
+        List<Palavra> listaPalavras = new ArrayList<>();
+        criarListaEmOrdem(raiz, listaPalavras);
+        return listaPalavras;
+    }
+
+    private void criarListaEmOrdem(NoAvl no, List<Palavra> lista) {
+        if (no != null) {
+            criarListaEmOrdem(no.getEsquerda(), lista);
+            lista.add(no.getConteudo());
+            criarListaEmOrdem(no.getDireita(), lista);
+        }
+    }
+
+    /**
+     * Lista todas as Palavras em Pré Ordem
+     * 
+     * @return Lista com todas as palavras Pré Ordem
+     */
+    public List<Palavra> listarPalavrasPreOrdem() {
+        List<Palavra> listaPalavras = new ArrayList<>();
+        criarListaPreOrdem(raiz, listaPalavras);
+        return listaPalavras;
+    }
+
+    private void criarListaPreOrdem(NoAvl no, List<Palavra> lista) {
+        if (no != null) {
+            lista.add(no.getConteudo());
+            criarListaPreOrdem(no.getEsquerda(), lista);
+            criarListaPreOrdem(no.getDireita(), lista);
+        }
+    }
+
+    /**
+     * Lista todas as Palavras em Pós Ordem
+     * 
+     * @return Lista com todas as palavras Pós Ordem
+     */
+    public List<Palavra> listarPalavrasPosOrdem() {
+        List<Palavra> listaPalavras = new ArrayList<>();
+        criarListaPosOrdem(raiz, listaPalavras);
+        return listaPalavras;
+    }
+
+    private void criarListaPosOrdem(NoAvl no, List<Palavra> lista) {
+        if (no != null) {
+            criarListaPosOrdem(no.getEsquerda(), lista);
+            criarListaPosOrdem(no.getDireita(), lista);
+            lista.add(no.getConteudo());
+        }
+    }
+
+    /**
      * Insere uma nova palavra no dicionário.
      * 
      * @param palavra O objeto Palavra contendo o termo e seu significado.
@@ -104,16 +170,17 @@ public class ArvoreAvl {
         if (no == null) {
             return new NoAvl(novaPalavra);
         }
+        NoAvl noEsq = no.getEsquerda();
+        NoAvl noDir = no.getDireita();
+        Palavra palavraEntity = no.getConteudo();
 
-        Palavra objPalavra = no.getConteudo();
-
-        int comparacao = novaPalavra.getPalavra().compareToIgnoreCase(objPalavra.getPalavra());
+        int comparacao = novaPalavra.getPalavra().compareToIgnoreCase(palavraEntity.getPalavra());
 
         if (comparacao < 0) {
-            no.setEsquerda(inserirRecursivo(no.getEsquerda(), novaPalavra));
+            no.setEsquerda(inserirRecursivo(noEsq, novaPalavra));
 
         } else if (comparacao > 0) {
-            no.setDireita(inserirRecursivo(no.getDireita(), novaPalavra));
+            no.setDireita(inserirRecursivo(noDir, novaPalavra));
 
         } else {
             return no;
@@ -125,11 +192,11 @@ public class ArvoreAvl {
     /**
      * Busca uma palavra na árvore a partir do seu termo (String).
      * 
-     * @param termo O termo Tupi-Guarani a ser buscado.
+     * @param palavra A palavra em Tupi-Guarani a ser buscada.
      * @return O objeto Palavra encontrado ou null caso não exista.
      */
-    public Palavra pesquisar(String termo) {
-        NoAvl noEncontrado = pesquisarRecursivo(this.raiz, termo);
+    public Palavra pesquisarPorPalavra(String palavra) {
+        NoAvl noEncontrado = pesquisarRecursivo(this.raiz, palavra);
 
         if (noEncontrado != null)
             return noEncontrado.getConteudo();
@@ -138,21 +205,49 @@ public class ArvoreAvl {
             return null;
     }
 
-    private NoAvl pesquisarRecursivo(NoAvl no, String termo) {
-        if (no == null) return null;
+    private NoAvl pesquisarRecursivo(NoAvl no, String palavra) {
+        if (no == null)
+            return null;
 
-        Palavra objPalavra = no.getConteudo();
+        Palavra palavraEntity = no.getConteudo();
 
-        int comparacao = termo.compareToIgnoreCase(objPalavra.getPalavra());
+        int comparacao = palavra.compareToIgnoreCase(palavraEntity.getPalavra());
 
         if (comparacao == 0)
             return no;
 
         if (comparacao < 0) {
-            return pesquisarRecursivo(no.getEsquerda(), termo);
+            return pesquisarRecursivo(no.getEsquerda(), palavra);
         } else {
-            return pesquisarRecursivo(no.getDireita(), termo);
+            return pesquisarRecursivo(no.getDireita(), palavra);
         }
+    }
+
+    /**
+     * Busca palavra por ID - Nota: perde desempenho
+     * 
+     * @param id ID da Palavra na Árvore
+     * @return A Palavra encontrada na Árvore
+     */
+    public Palavra pesquisarPorId(Long id) {
+        return pesquisarPorIdRecursivo(this.raiz, id);
+    }
+
+    private Palavra pesquisarPorIdRecursivo(NoAvl no, Long id) {
+        if (no == null)
+            return null;
+
+        Palavra palavraEntity = no.getConteudo();
+
+        if (palavraEntity.getId().equals(id)) {
+            return no.getConteudo();
+        }
+
+        Palavra encontradaEsq = pesquisarPorIdRecursivo(no.getEsquerda(), id);
+        if (encontradaEsq != null)
+            return encontradaEsq;
+
+        return pesquisarPorIdRecursivo(no.getDireita(), id);
     }
 
     /**
@@ -173,33 +268,40 @@ public class ArvoreAvl {
      * @return O nó resultante após a remoção e balanceamento.
      */
     private NoAvl removerRecursivo(NoAvl no, String palavra) {
-        if (no == null) return null;
+        if (no == null)
+            return null;
 
-        Palavra objPalavra = no.getConteudo();
+        Palavra palavraEntity = no.getConteudo();
 
-        int comparacao = palavra.compareToIgnoreCase(objPalavra.getPalavra());
+        int comparacao = palavra.compareToIgnoreCase(palavraEntity.getPalavra());
 
         if (comparacao < 0) {
             no.setEsquerda(removerRecursivo(no.getEsquerda(), palavra));
         } else if (comparacao > 0) {
             no.setDireita(removerRecursivo(no.getDireita(), palavra));
         } else {
-            // Nó folha ou com apenas um filho
-            if (no.getEsquerda() == null || no.getDireita() == null) {
-                no = (no.getEsquerda() != null) ? no.getEsquerda() : no.getDireita();
-
-            } else {
-                // Nó com dois filhos - Busca sucessor em ordem
-                NoAvl sucessor = getMenorNo(no.getDireita());
-                no.setConteudo(sucessor.getConteudo());
-                no.setDireita(removerRecursivo(no.getDireita(), sucessor.getConteudo().getPalavra()));
-            }
+            no = executarRemocao(no);
         }
 
         if (no == null)
             return null;
 
         return rebalancear(no);
+    }
+
+    private NoAvl executarRemocao(NoAvl no) {
+        if (no.getEsquerda() == null)
+            return no.getDireita();
+
+        if (no.getDireita() == null)
+            return no.getEsquerda();
+
+        // No com 2 filhos
+        NoAvl sucessor = getMenorNo(no.getDireita());
+        Palavra palavra = sucessor.getConteudo();
+        no.setConteudo(palavra);
+        no.setDireita(removerRecursivo(no.getDireita(), palavra.getPalavra()));
+        return no;
     }
 
     /**
@@ -225,25 +327,83 @@ public class ArvoreAvl {
     private NoAvl rebalancear(NoAvl no) {
         atualizarAltura(no);
         int fatorBalanceamento = getFatorBalanceamento(no);
+        NoAvl noEsq = no.getEsquerda();
+        NoAvl noDir = no.getDireita();
 
         // Desbalanceamento à Esquerda
         if (fatorBalanceamento > 1) {
-            // Caso Esquerda-Direita: Necessita rotação dupla
-            if (getFatorBalanceamento(no.getEsquerda()) < 0) {
-                no.setEsquerda(rotacionarEsquerda(no.getEsquerda()));
+            // Ponta do Joelho apontando para a ESQUERDA: Necessita rotação dupla
+            if (getFatorBalanceamento(noEsq) < 0) {
+                no.setEsquerda(rotacionarEsquerda(noEsq));
             }
             return rotacionarDireita(no);
         }
 
         // Desbalanceamento à Direita
         if (fatorBalanceamento < -1) {
-            // Caso Direita-Esquerda: Necessita rotação dupla
-            if (getFatorBalanceamento(no.getDireita()) > 0) {
-                no.setDireita(rotacionarDireita(no.getDireita()));
+            // Ponta do Joelho apontando para a DIREITA: Necessita rotação dupla
+            if (getFatorBalanceamento(noDir) > 0) {
+                no.setDireita(rotacionarDireita(noDir));
             }
             return rotacionarEsquerda(no);
         }
 
         return no;
+    }
+
+    /**
+     * Retorna uma lista com todas as palavras em Amplitude (nível por nível).
+     * 
+     * @return Lista de Palavra Entity na ordem de largura.
+     */
+    public List<Palavra> listarEmAmplitude() {
+        List<Palavra> lista = new ArrayList<>();
+
+        if (this.raiz == null)
+            return lista;
+
+        Queue<NoAvl> fila = new LinkedList<>();
+        fila.add(this.raiz);
+
+        while (!fila.isEmpty()) {
+            NoAvl noAtual = fila.poll();
+            Palavra palavraEntity = noAtual.getConteudo();
+
+            lista.add(palavraEntity);
+
+            if (noAtual.getEsquerda() != null)
+                fila.add(noAtual.getEsquerda());
+
+            if (noAtual.getDireita() != null)
+                fila.add(noAtual.getDireita());
+        }
+        return lista;
+    }
+
+    /**
+     * Retorna uma lista com todas as palavras em Profundidade.
+     * 
+     * @return Lista de Palavra Entity na ordem de profundidade.
+     */
+    public void listarEmProfundide() {
+        List<Palavra> lista = new ArrayList<>();
+        if (this.raiz == null)
+            return;
+
+        Stack<NoAvl> pilha = new Stack<>();
+        pilha.push(this.raiz);
+
+        while (!pilha.isEmpty()) {
+            NoAvl noAtual = pilha.pop();
+            Palavra palavraEntity = noAtual.getConteudo();
+
+            lista.add(palavraEntity);
+
+            if (noAtual.getDireita() != null)
+                pilha.push(noAtual.getDireita());
+
+            if (noAtual.getEsquerda() != null)
+                pilha.push(noAtual.getEsquerda());
+        }
     }
 }
