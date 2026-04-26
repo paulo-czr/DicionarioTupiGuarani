@@ -49,12 +49,51 @@ public class DicionarioService {
         return palavraSalvaNoBanco;
     }
 
+    /**
+     * Lista todas as Palavras presentes na ávore Em Ordem
+     * 
+     * @return Lista Em Ordem
+     */
+    public List<Palavra> buscarTodasPalavrasEmOrdem(){
+        return arvore.listarPalavrasEmOrdem();
+    }
+
+        /**
+     * Lista todas as Palavras presentes na ávore em Pré Ordem
+     * 
+     * @return Lista Pré Ordem
+     */
+    public List<Palavra> buscarTodasPalavrasPreOrdem(){
+        return arvore.listarPalavrasPreOrdem();
+    }
+
+        /**
+     * Lista todas as Palavras presentes na ávore em Pós Ordem
+     * 
+     * @return Lista Pós Ordem
+     */
+    public List<Palavra> buscarTodasPalavrasPosOrdem(){
+        return arvore.listarPalavrasPosOrdem();
+    }
+
+    /**
+     * Verifica se a palavra existe no banco utilizando seu ID
+     * 
+     * @param id O identificador único de cada palavra para validação
+     * @return retorna a Palavra se ela existir
+     */
     public Palavra verificarPorIdBanco(Long id){
         return repository.findById(id).orElseThrow(
             () -> new EntityNotFoundException("ID da Palavra não encontrado no Banco de Dados")
         );
     }
 
+    /**
+     * Verifica se a Palavra existe no Banco de Dados usando um termo para pesquisa
+     * 
+     * @param palavra o termo que deseja verificar se existe no banco
+     * @return a Palavra existente
+     */
     public Palavra verificarPorPalavraArvore(String palavra){
         if (arvore.pesquisarPorPalavra(palavra) == null) {
             throw new EntityNotFoundException("ID da Palavra não encontrado no Banco de Dados");

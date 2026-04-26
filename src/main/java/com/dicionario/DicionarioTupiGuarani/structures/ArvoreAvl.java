@@ -1,6 +1,8 @@
 package com.dicionario.DicionarioTupiGuarani.structures;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -35,7 +37,7 @@ public class ArvoreAvl {
             return 0;
         NoAvl noEsq = no.getEsquerda();
         NoAvl noDir = no.getDireita();
-        
+
         return getAltura(noEsq) - getAltura(noDir);
     }
 
@@ -88,6 +90,63 @@ public class ArvoreAvl {
         atualizarAltura(novaRaiz);
 
         return novaRaiz;
+    }
+
+    /**
+     * Lista todas as Palavras Em Ordem alfabética
+     * 
+     * @return Lista com todas as palavras Em Ordem
+     */
+    public List<Palavra> listarPalavrasEmOrdem() {
+        List<Palavra> listaPalavras = new ArrayList<>();
+        criarListaEmOrdem(raiz, listaPalavras);
+        return listaPalavras;
+    }
+
+    private void criarListaEmOrdem(NoAvl no, List<Palavra> lista) {
+        if (no != null) {
+            criarListaEmOrdem(no.getEsquerda(), lista);
+            lista.add(no.getConteudo());
+            criarListaEmOrdem(no.getDireita(), lista);
+        }
+    }
+
+    /**
+     * Lista todas as Palavras em Pré Ordem
+     * 
+     * @return Lista com todas as palavras Pré Ordem
+     */
+    public List<Palavra> listarPalavrasPreOrdem() {
+        List<Palavra> listaPalavras = new ArrayList<>();
+        criarListaPreOrdem(raiz, listaPalavras);
+        return listaPalavras;
+    }
+
+    private void criarListaPreOrdem(NoAvl no, List<Palavra> lista) {
+        if (no != null) {
+            lista.add(no.getConteudo());
+            criarListaPreOrdem(no.getEsquerda(), lista);
+            criarListaPreOrdem(no.getDireita(), lista);
+        }
+    }
+
+    /**
+     * Lista todas as Palavras em Pós Ordem
+     * 
+     * @return Lista com todas as palavras Pós Ordem
+     */
+    public List<Palavra> listarPalavrasPosOrdem() {
+        List<Palavra> listaPalavras = new ArrayList<>();
+        criarListaPosOrdem(raiz, listaPalavras);
+        return listaPalavras;
+    }
+
+    private void criarListaPosOrdem(NoAvl no, List<Palavra> lista) {
+        if (no != null) {
+            criarListaPosOrdem(no.getEsquerda(), lista);
+            criarListaPosOrdem(no.getDireita(), lista);
+            lista.add(no.getConteudo());
+        }
     }
 
     /**
@@ -221,22 +280,28 @@ public class ArvoreAvl {
         } else if (comparacao > 0) {
             no.setDireita(removerRecursivo(no.getDireita(), palavra));
         } else {
-            // Nó folha ou com apenas um filho
-            if (no.getEsquerda() == null || no.getDireita() == null) {
-                no = (no.getEsquerda() != null) ? no.getEsquerda() : no.getDireita();
-
-            } else {
-                // Nó com dois filhos - Busca sucessor em ordem
-                NoAvl sucessor = getMenorNo(no.getDireita());
-                no.setConteudo(sucessor.getConteudo());
-                no.setDireita(removerRecursivo(no.getDireita(), sucessor.getConteudo().getPalavra()));
-            }
+            no = executarRemocao(no);
         }
 
         if (no == null)
             return null;
 
         return rebalancear(no);
+    }
+
+    private NoAvl executarRemocao(NoAvl no) {
+        if (no.getEsquerda() == null)
+            return no.getDireita();
+
+        if (no.getDireita() == null)
+            return no.getEsquerda();
+
+        // No com 2 filhos
+        NoAvl sucessor = getMenorNo(no.getDireita());
+        Palavra palavra = sucessor.getConteudo();
+        no.setConteudo(palavra);
+        no.setDireita(removerRecursivo(no.getDireita(), palavra.getPalavra()));
+        return no;
     }
 
     /**
@@ -287,92 +352,15 @@ public class ArvoreAvl {
     }
 
     /**
-     * Inicia o percurso em Pré-ordem a partir da raiz da árvore.
-     * Raiz, Esquerda, Direita
-     */
-    public void preOrdem() {
-        preOrdemRecursivo(this.raiz);
-    }
-
-    /**
-     * Lógica recursiva para o percurso em Pré-ordem.
+     * Retorna uma lista com todas as palavras em Amplitude (nível por nível).
      * 
-     * * @param no O nó atual da recursão sendo visitado.
+     * @return Lista de Palavra Entity na ordem de largura.
      */
-    private void preOrdemRecursivo(NoAvl no) {
-        if (no != null) {
+    public List<Palavra> listarEmAmplitude() {
+        List<Palavra> lista = new ArrayList<>();
 
-            Palavra palavraEntity = no.getConteudo();
-
-            System.out.print(palavraEntity.getPalavra() + " ");
-
-            preOrdemRecursivo(no.getEsquerda());
-
-            preOrdemRecursivo(no.getDireita());
-        }
-    }
-
-    /**
-     * Inicia o percurso Em Ordem a partir da raiz da árvore.
-     * Esquerda, Raiz, Direita
-     * Ordem Alfabética
-     */
-    public void emOrdem() {
-        emOrdemRecursivo(this.raiz);
-    }
-
-    /**
-     * Lógica recursiva para o percurso Em Ordem.
-     * 
-     * @param no O nó atual da recursão.
-     */
-    private void emOrdemRecursivo(NoAvl no) {
-        if (no != null) {
-
-            Palavra palavraEntity = no.getConteudo();
-
-            emOrdemRecursivo(no.getEsquerda());
-
-            System.out.println(palavraEntity.getPalavra() + ": " + palavraEntity.getSignificado());
-
-            emOrdemRecursivo(no.getDireita());
-        }
-    }
-
-    /**
-     * Inicia o percurso em Pós-ordem a partir da raiz da árvore.
-     * Esquerda, Direita, Raiz
-     */
-    public void posOrdem() {
-        posOrdemRecursivo(this.raiz);
-    }
-
-    /**
-     * Lógica recursiva para o percurso em Pós-ordem.
-     * 
-     * @param no O nó atual da recursão.
-     */
-    private void posOrdemRecursivo(NoAvl no) {
-        if (no != null) {
-            Palavra palavraEntity = no.getConteudo();
-
-            posOrdemRecursivo(no.getEsquerda());
-
-            posOrdemRecursivo(no.getDireita());
-
-            System.out.println("Visitando: " + palavraEntity.getPalavra());
-        }
-    }
-
-    /**
-     * Percorre a árvore em Amplitude, visitando nível por nível.
-     * Não utiliza recursão, utilizando uma Fila (Queue) para gerenciar a ordem de
-     * visita.
-     */
-    public void amplitude() {
-        if (this.raiz == null) {
-            return;
-        }
+        if (this.raiz == null)
+            return lista;
 
         Queue<NoAvl> fila = new LinkedList<>();
         fila.add(this.raiz);
@@ -381,46 +369,41 @@ public class ArvoreAvl {
             NoAvl noAtual = fila.poll();
             Palavra palavraEntity = noAtual.getConteudo();
 
-            System.out.print(palavraEntity.getPalavra() + " ");
+            lista.add(palavraEntity);
 
-            if (noAtual.getEsquerda() != null) {
+            if (noAtual.getEsquerda() != null)
                 fila.add(noAtual.getEsquerda());
-            }
 
-            if (noAtual.getDireita() != null) {
+            if (noAtual.getDireita() != null)
                 fila.add(noAtual.getDireita());
-            }
         }
+        return lista;
     }
 
     /**
-     * Percorre a árvore em Profundidade de forma iterativa.
+     * Retorna uma lista com todas as palavras em Profundidade.
      * 
-     * Utiliza uma Pilha (Stack) para simular o comportamento da pilha de recursão.
+     * @return Lista de Palavra Entity na ordem de profundidade.
      */
-    public void profundidade() {
-        if (this.raiz == null) {
+    public void listarEmProfundide() {
+        List<Palavra> lista = new ArrayList<>();
+        if (this.raiz == null)
             return;
-        }
 
         Stack<NoAvl> pilha = new Stack<>();
         pilha.push(this.raiz);
 
         while (!pilha.isEmpty()) {
             NoAvl noAtual = pilha.pop();
-
             Palavra palavraEntity = noAtual.getConteudo();
 
-            System.out.print(palavraEntity.getPalavra() + " ");
+            lista.add(palavraEntity);
 
-            if (noAtual.getDireita() != null) {
+            if (noAtual.getDireita() != null)
                 pilha.push(noAtual.getDireita());
-            }
 
-            if (noAtual.getEsquerda() != null) {
+            if (noAtual.getEsquerda() != null)
                 pilha.push(noAtual.getEsquerda());
-            }
         }
     }
-
 }
