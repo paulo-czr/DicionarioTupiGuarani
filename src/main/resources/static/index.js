@@ -1,13 +1,13 @@
 // index.js
 async function atualizarContador() {
     const elementoContador = document.getElementById('contador-palavras');
-    
+
     if (elementoContador) {
         try {
             // URL do seu endpoint Spring Boot
             const resposta = await fetch('http://localhost:8080/api/dicionario/contador');
             const total = await resposta.json();
-            
+
             elementoContador.innerText = total;
         } catch (erro) {
             console.error("Erro ao buscar contador do Java:", erro);
@@ -20,3 +20,6 @@ async function atualizarContador() {
 document.addEventListener('DOMContentLoaded', () => {
     atualizarContador();
 });
+
+// Inicializa a conexão
+const api = new DicionarioFront('http://localhost:3000');

@@ -76,6 +76,12 @@ public class DicionarioService {
         return arvore.listarPalavrasPosOrdem();
     }
 
+    public Palavra pesquisarPalavraPorId(Long id){
+        return repository.findById(id).orElseThrow(
+            () -> new EntityNotFoundException("O ID da Palavra não foi encontrado no Banco de Dados.")
+        );
+    }
+
     /**
      * Verifica se a palavra existe no banco utilizando seu ID
      * 

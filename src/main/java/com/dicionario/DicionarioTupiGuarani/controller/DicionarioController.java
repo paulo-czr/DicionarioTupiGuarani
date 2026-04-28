@@ -1,10 +1,12 @@
 package com.dicionario.DicionarioTupiGuarani.controller;
 
 import com.dicionario.DicionarioTupiGuarani.model.Palavra;
+import com.dicionario.DicionarioTupiGuarani.service.DicionarioService;
 import com.dicionario.DicionarioTupiGuarani.structures.ArvoreAvl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Provider.Service;
 import java.util.List;
 
 @RestController
@@ -13,10 +15,18 @@ import java.util.List;
 public class DicionarioController {
 
     // Instância única da árvore para todo o sistema
-    private final ArvoreAvl arvore = new ArvoreAvl();
+    private final ArvoreAvl arvore;
+    private final DicionarioService service;
+
+    public DicionarioController(DicionarioService service) {
+        this.arvore = new ArvoreAvl();
+        this.service = service;
+    }
 
     @PostMapping("/inserir")
     public ResponseEntity<String> inserir(@RequestBody Palavra palavra) {
+        //verificar se a palavra já existe na árvore 
+        service.salvarPalavra(palavra);
         arvore.inserir(palavra);
         return ResponseEntity.ok("Palavra inserida com sucesso!");
     }
@@ -43,12 +53,22 @@ public class DicionarioController {
     }
 
     @GetMapping("/pesquisar/{termo}")
-    public ResponseEntity<Palavra> pesquisar(@PathVariable String termo) {
+    public ResponseEntity<Palavra> pesquisarPalavraPorTermo(@PathVariable String termo) {
         Palavra encontrada = arvore.pesquisarPorPalavra(termo);
         if (encontrada != null) {
             return ResponseEntity.ok(encontrada);
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/pesquisar/{id}")
+    public ResponseEntity<Palavra> pesquisarPalavraPorId(@PathVariable Long id) {
+        Palavra encontrada = service.pesquisarPalavraPorId(id);
+        if (encontrada != null) {
+            return ResponseEntity.ok(encontrada);
+        }
+        return ResponseEntity.notFound().build();
+
     }
 
     @DeleteMapping("/remover/{termo}")
