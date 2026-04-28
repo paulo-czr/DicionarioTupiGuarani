@@ -1,21 +1,22 @@
-// Função para atualizar o contador de palavras no rodapé
-// novoValor é o número de palavras que queremos mostrar
-function atualizarContador(novoValor) {
+// index.js
+async function atualizarContador() {
     const elementoContador = document.getElementById('contador-palavras');
     
     if (elementoContador) {
-        elementoContador.innerText = novoValor;
+        try {
+            // URL do seu endpoint Spring Boot
+            const resposta = await fetch('http://localhost:8080/api/dicionario/contador');
+            const total = await resposta.json();
+            
+            elementoContador.innerText = total;
+        } catch (erro) {
+            console.error("Erro ao buscar contador do Java:", erro);
+            elementoContador.innerText = "0"; // Valor padrão em caso de erro
+        }
     }
 }
 
-// Exemplo: Quando o site carrega, ele define como 20 (apenas ilustrativo)
+// Executa quando a página carrega
 document.addEventListener('DOMContentLoaded', () => {
-    atualizarContador(20);
+    atualizarContador();
 });
-
-// Exemplo se as palavras estivessem em uma estrutura de Árvore:
-// Supondo que 'minhaArvore' seja a instância da sua Árvore AVL
-/*
-const totalPalavras = minhaArvore.contarNos(); 
-atualizarContador(totalPalavras);
-*/
