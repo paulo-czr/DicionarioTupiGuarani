@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Função para carregar os dados do Java
     async function carregarDados() {
         try {
-            const resposta = await fetch('http://localhost:8080/api/dicionario/listar-em-ordem');
+            const resposta = await fetch('http://localhost:3000/api/dicionario/listar-em-ordem');
             const palavras = await resposta.json();
-
+            
             atualizarInterface(palavras);
         } catch (erro) {
             console.error("Erro ao carregar dicionário:", erro);
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.removerPalavra = async (termo) => {
         if (confirm(`Tem certeza que deseja remover "${termo}"?`)) {
             try {
-                const response = await fetch(`http://localhost:8080/api/dicionario/remover/${termo}`, {
+                const response = await fetch(`http://localhost:3000/api/dicionario/remover/${termo}`, {
                     method: 'DELETE'
                 });
 

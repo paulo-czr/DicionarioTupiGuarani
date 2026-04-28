@@ -2,78 +2,99 @@ package com.dicionario.DicionarioTupiGuarani.controller;
 
 import com.dicionario.DicionarioTupiGuarani.model.Palavra;
 import com.dicionario.DicionarioTupiGuarani.service.DicionarioService;
-import com.dicionario.DicionarioTupiGuarani.structures.ArvoreAvl;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Provider.Service;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/dicionario")
-@CrossOrigin(origins = "*") // Permite que o seu HTML acesse o Java sem erros de segurança
+@CrossOrigin(origins = "*")
 public class DicionarioController {
 
-    // Instância única da árvore para todo o sistema
-    private final ArvoreAvl arvore;
     private final DicionarioService service;
 
     public DicionarioController(DicionarioService service) {
-        this.arvore = new ArvoreAvl();
         this.service = service;
     }
 
     @PostMapping("/inserir")
-    public ResponseEntity<String> inserir(@RequestBody Palavra palavra) {
-        //verificar se a palavra já existe na árvore 
-        service.salvarPalavra(palavra);
-        arvore.inserir(palavra);
-        return ResponseEntity.ok("Palavra inserida com sucesso!");
+    public ResponseEntity<?> inserir(@RequestBody Palavra palavra) {
+        try {
+            // A service já salva no banco e insere na árvore internamente
+            Palavra salva = service.salvarPalavra(palavra);
+            return ResponseEntity.status(HttpStatus.CREATED).body(salva);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/contador")
     public ResponseEntity<Integer> getContador() {
-        // Usando o método listar para contar o tamanho da lista
-        return ResponseEntity.ok(arvore.listarPalavrasEmOrdem().size());
+        return ResponseEntity.ok(service.buscarTodasPalavrasEmOrdem().size());
     }
 
     @GetMapping("/listar-em-ordem")
     public ResponseEntity<List<Palavra>> listarEmOrdem() {
-        return ResponseEntity.ok(arvore.listarPalavrasEmOrdem());
+        return ResponseEntity.ok(service.buscarTodasPalavrasEmOrdem());
     }
 
     @GetMapping("/listar-pre-ordem")
     public ResponseEntity<List<Palavra>> listarPreOrdem() {
-        return ResponseEntity.ok(arvore.listarPalavrasPreOrdem());
+        return ResponseEntity.ok(service.buscarTodasPalavrasPreOrdem());
     }
 
     @GetMapping("/listar-pos-ordem")
     public ResponseEntity<List<Palavra>> listarPosOrdem() {
-        return ResponseEntity.ok(arvore.listarPalavrasPosOrdem());
+        return ResponseEntity.ok(service.buscarTodasPalavrasPosOrdem());
     }
 
-    @GetMapping("/pesquisar/{termo}")
+    @GetMapping("/pesquisar/termo/{termo}")
     public ResponseEntity<Palavra> pesquisarPalavraPorTermo(@PathVariable String termo) {
-        Palavra encontrada = arvore.pesquisarPorPalavra(termo);
-        if (encontrada != null) {
-            return ResponseEntity.ok(encontrada);
+        try {
+            return ResponseEntity.ok(service.pesquisarPalavraPorTermo(termo));
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/pesquisar/{id}")
+    @GetMapping("/pesquisar/id/{id}")
     public ResponseEntity<Palavra> pesquisarPalavraPorId(@PathVariable Long id) {
-        Palavra encontrada = service.pesquisarPalavraPorId(id);
-        if (encontrada != null) {
-            return ResponseEntity.ok(encontrada);
+        try {
+            return ResponseEntity.ok(service.pesquisarPalavraPorId(id));
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
-
     }
 
-    @DeleteMapping("/remover/{termo}")
-    public ResponseEntity<Void> remover(@PathVariable String termo) {
-        arvore.remover(termo);
-        return ResponseEntity.ok().build();
+    @PutMapping("/atualizar/{id}")
+    public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody Palavra novosDados) {
+        try {
+            Palavra atualizada = service.atualizarPalavraPorId(id, novosDados);
+            return ResponseEntity.ok(atualizada);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/remover/termo/{termo}")
+    public ResponseEntity<?> removerPorTermo(@PathVariable String termo) {
+        try {
+            service.deletarPalavraPorTermo(termo);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/remover/id/{id}")
+    public ResponseEntity<?> removerPorId(@PathVariable Long id) {
+        try {
+            service.deletarPalavraPorId(id);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 }

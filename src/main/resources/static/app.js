@@ -1,4 +1,3 @@
-// app.js
 import express from 'express';
 import cors from 'cors';
 import dicionarioRoutes from './routes/dicionarioRoutes.js';

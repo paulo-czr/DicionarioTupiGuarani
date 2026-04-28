@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function carregarEstatisticas() {
         try {
             // Rota exata do seu GetMapping no Controller
-            const resposta = await fetch('http://localhost:8080/api/dicionario/contador');
+            const resposta = await fetch('http://localhost:3000/api/dicionario/contador');
             const total = await resposta.json();
             
             if (totalPalavrasElement) totalPalavrasElement.innerText = total;
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // Rota exata do seu PostMapping no Controller
-            const response = await fetch('http://localhost:8080/api/dicionario/inserir', {
+            const response = await fetch('http://localhost:3000/api/dicionario/inserir', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
