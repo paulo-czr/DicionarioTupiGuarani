@@ -11,13 +11,12 @@ class App {
   }
 
   middlewares() {
-    // O CORS permite que seu Front-end (ex: porta 5500) acesse o Back (ex: porta 3000)
+
     this.server.use(cors());
     this.server.use(express.json());
   }
 
   routes() {
-    // Conecta suas rotas de dicionário
     this.server.use('/api/dicionario', dicionarioRoutes);
   }
 }

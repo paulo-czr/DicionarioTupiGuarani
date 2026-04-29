@@ -1,72 +1,80 @@
+// Definimos buscarPalavra fora para que ela seja acessível por qualquer parte do script
+let buscarPalavra; 
+
 document.addEventListener('DOMContentLoaded', () => {
     const formPesquisa = document.getElementById('formulario-pesquisa');
     const campoTupi = document.getElementById('campo-tupi');
-    
-    // Criar o container de resultado dinamicamente se ele não existir
     const mainContainer = document.querySelector('main');
+    
+    // Criar o container de resultados
     const resultadoContainer = document.createElement('div');
     resultadoContainer.id = 'resultado-pesquisa';
     resultadoContainer.className = 'd-flex justify-content-center mt-4';
-    // Insere o container de resultado antes do informativo
+    
     const informativo = document.querySelector('.cartao-informativo-busca').parentElement;
     mainContainer.insertBefore(resultadoContainer, informativo);
 
-    // 1. Função para buscar a palavra no Java
-    async function buscarPalavra(termo) {
+    const JAVA_API_URL = "http://localhost:3000/api/dicionario";
+
+    // Atribuímos a lógica à variável buscarPalavra
+    buscarPalavra = async (termo) => {
         if (!termo) return;
 
+        resultadoContainer.innerHTML = '<div class="spinner-border text-primary" role="status"></div>';
+
         try {
-            // Chamada para a Controller Java (note o /pesquisar/{termo})
-            const resposta = await fetch(`http://localhost:8080/api/dicionario/pesquisar/${termo}`);
+            const resposta = await fetch(`${JAVA_API_URL}/pesquisar/palavra/${encodeURIComponent(termo)}`);
 
             if (resposta.ok) {
                 const palavraEncontrada = await resposta.json();
                 exibirResultado(palavraEncontrada);
             } else if (resposta.status === 404) {
-                exibirErro("Palavra não encontrada no dicionário.");
+                exibirErro(`A palavra "${termo}" não foi encontrada.`);
             } else {
-                exibirErro("Erro ao processar a busca.");
+                exibirErro("Erro ao processar a busca no servidor.");
             }
         } catch (erro) {
             console.error("Erro de conexão:", erro);
-            exibirErro("Não foi possível conectar ao servidor Spring Boot.");
+            exibirErro("Não foi possível conectar ao servidor.");
         }
-    }
+    };
 
-    // 2. Função para mostrar o card de resultado na tela
     function exibirResultado(p) {
         resultadoContainer.innerHTML = `
-            <div class="cartao-resultado p-4 w-100 animate__animated animate__fadeIn" style="max-width: 600px; background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-left: 5px solid #0d6efd;">
+            <div class="cartao-resultado p-4 w-100 shadow-sm" style="max-width: 600px; background: white; border-radius: 20px; border-left: 6px solid #1a3a3a;">
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
-                        <span class="badge bg-primary mb-2">Resultado Encontrado</span>
-                        <h2 class="fw-bold mb-1" style="color: #1a3a3a; text-transform: capitalize;">${p.palavra}</h2>
-                        <p class="fs-5 text-muted mb-0">Significado: <strong>${p.significado}</strong></p>
+                        <span class="badge bg-success mb-2 px-3 py-2 rounded-pill">Palavra Encontrada</span>
+                        <h2 class="fw-bold mb-1" style="color: #1a3a3a; font-family: 'Inter', sans-serif;">${p.palavra}</h2>
+                        <hr class="my-2" style="opacity: 0.1;">
+                        <p class="fs-5 mb-0" style="color: #4a4a4a;">
+                            <span class="text-muted small d-block">Significado:</span>
+                            <strong>${p.significado}</strong>
+                        </p>
                     </div>
-                    <div class="fs-1">🌳</div>
+                    <div class="fs-1 opacity-50">🌳</div>
                 </div>
-            </div>
-        `;
+            </div>`;
     }
 
-    // 3. Função para mostrar mensagens de erro
     function exibirErro(mensagem) {
         resultadoContainer.innerHTML = `
-            <div class="alert alert-warning rounded-4 shadow-sm" role="alert">
-                ⚠️ ${mensagem}
-            </div>
-        `;
+            <div class="alert alert-light border-warning d-flex align-items-center gap-3 p-4 shadow-sm" role="alert" style="max-width: 600px; border-radius: 15px; border-left: 5px solid #ffc107;">
+                <span class="fs-3">⚠️</span>
+                <div class="text-dark">${mensagem}</div>
+            </div>`;
     }
 
-    // 4. Evento do Formulário
+    // Evento do Formulário
     formPesquisa.addEventListener('submit', (e) => {
         e.preventDefault();
         buscarPalavra(campoTupi.value.trim().toLowerCase());
     });
 
-    // 5. Função Global para os botões de sugestão
+    // Função Global vinculada ao window
     window.preencherBusca = (termo) => {
         campoTupi.value = termo;
-        buscarPalavra(termo);
+        buscarPalavra(termo.toLowerCase());
+        resultadoContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
     };
 });

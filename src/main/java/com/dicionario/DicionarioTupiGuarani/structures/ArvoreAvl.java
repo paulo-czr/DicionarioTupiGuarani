@@ -277,6 +277,7 @@ public class ArvoreAvl {
 
         if (comparacao < 0) {
             no.setEsquerda(removerRecursivo(no.getEsquerda(), palavra));
+            
         } else if (comparacao > 0) {
             no.setDireita(removerRecursivo(no.getDireita(), palavra));
         } else {

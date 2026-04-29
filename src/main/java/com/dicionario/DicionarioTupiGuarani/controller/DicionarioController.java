@@ -22,9 +22,9 @@ public class DicionarioController {
     @PostMapping("/inserir")
     public ResponseEntity<?> inserir(@RequestBody Palavra palavra) {
         try {
-            // A service já salva no banco e insere na árvore internamente
             Palavra salva = service.salvarPalavra(palavra);
             return ResponseEntity.status(HttpStatus.CREATED).body(salva);
+
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -32,28 +32,33 @@ public class DicionarioController {
 
     @GetMapping("/contador")
     public ResponseEntity<Integer> getContador() {
-        return ResponseEntity.ok(service.buscarTodasPalavrasEmOrdem().size());
+        int totalPalavras = service.buscarTodasPalavrasEmOrdem().size();
+        return ResponseEntity.ok(totalPalavras);
     }
 
     @GetMapping("/listar-em-ordem")
     public ResponseEntity<List<Palavra>> listarEmOrdem() {
-        return ResponseEntity.ok(service.buscarTodasPalavrasEmOrdem());
+        List<Palavra> lista = service.buscarTodasPalavrasEmOrdem();
+        return ResponseEntity.ok(lista);
     }
 
     @GetMapping("/listar-pre-ordem")
     public ResponseEntity<List<Palavra>> listarPreOrdem() {
-        return ResponseEntity.ok(service.buscarTodasPalavrasPreOrdem());
+        List<Palavra> lista = service.buscarTodasPalavrasPreOrdem();
+        return ResponseEntity.ok(lista);
     }
 
     @GetMapping("/listar-pos-ordem")
     public ResponseEntity<List<Palavra>> listarPosOrdem() {
-        return ResponseEntity.ok(service.buscarTodasPalavrasPosOrdem());
+        List<Palavra> lista = service.buscarTodasPalavrasPosOrdem();
+        return ResponseEntity.ok(lista);
     }
 
-    @GetMapping("/pesquisar/termo/{termo}")
+    @GetMapping("/pesquisar/palavra/{termo}")
     public ResponseEntity<Palavra> pesquisarPalavraPorTermo(@PathVariable String termo) {
         try {
-            return ResponseEntity.ok(service.pesquisarPalavraPorTermo(termo));
+            Palavra palavra = service.pesquisarPalavraPorTermo(termo);
+            return ResponseEntity.ok(palavra);
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
@@ -62,7 +67,8 @@ public class DicionarioController {
     @GetMapping("/pesquisar/id/{id}")
     public ResponseEntity<Palavra> pesquisarPalavraPorId(@PathVariable Long id) {
         try {
-            return ResponseEntity.ok(service.pesquisarPalavraPorId(id));
+            Palavra palavra = service.pesquisarPalavraPorId(id);
+            return ResponseEntity.ok(palavra);
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
@@ -78,7 +84,7 @@ public class DicionarioController {
         }
     }
 
-    @DeleteMapping("/remover/termo/{termo}")
+    @DeleteMapping("/remover/palavra/{termo}")
     public ResponseEntity<?> removerPorTermo(@PathVariable String termo) {
         try {
             service.deletarPalavraPorTermo(termo);

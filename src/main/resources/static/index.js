@@ -1,13 +1,12 @@
 class DicionarioApp {
   constructor() {
-    // Configurações
     this.API_URL = "http://localhost:3000/api/dicionario";
 
-    // Elementos da Interface
+    // Interface
     this.form = document.querySelector("form");
     this.inputTupi = document.getElementById("tupi");
     this.inputSignificado = document.getElementById("portugues");
-    this.displayContador = document.getElementById("total-palavras");
+    this.displayContador = document.getElementById("contador-palavras");
 
     this.init();
   }
@@ -24,8 +23,7 @@ class DicionarioApp {
    */
   async salvar(e) {
     e.preventDefault();
-
-    // Criando o objeto exatamente como a sua classe Palavra.java espera
+    
     const novaPalavra = {
       palavra: this.inputTupi.value,
       significado: this.inputSignificado.value,

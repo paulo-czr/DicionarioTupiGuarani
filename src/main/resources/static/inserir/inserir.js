@@ -4,11 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalPalavrasElement = document.getElementById('total-palavras');
     const nosArvoreElement = document.getElementById('nos-arvore');
 
+    const JAVA_API_URL = "http://localhost:3000/api/dicionario";
+
     // 1. Função para carregar o contador atualizado do Java
     async function carregarEstatisticas() {
         try {
-            // Rota exata do seu GetMapping no Controller
-            const resposta = await fetch('http://localhost:3000/api/dicionario/contador');
+            // Rota do Controller
+            const resposta = await fetch(`${JAVA_API_URL}/contador`);
             const total = await resposta.json();
             
             if (totalPalavrasElement) totalPalavrasElement.innerText = total;
@@ -18,15 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 2. Evento de envio do formulário
+    //Envio do formulário
     form.addEventListener('submit', async (e) => {
         e.preventDefault(); 
 
         const tupiValue = document.getElementById('tupi').value;
         const portuguesValue = document.getElementById('portugues').value;
 
-        // IMPORTANTE: Verifique se no seu arquivo Palavra.java 
-        // os nomes são 'palavra' e 'significado'. Se forem diferentes, mude aqui:
         const novaPalavra = {
             palavra: tupiValue,
             significado: portuguesValue
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // Rota exata do seu PostMapping no Controller
-            const response = await fetch('http://localhost:3000/api/dicionario/inserir', {
+            const response = await fetch(`${JAVA_API_URL}/inserir`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -45,7 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
                 alert('Sucesso! O Java inseriu e balanceou a árvore AVL.');
                 form.reset(); 
-                carregarEstatisticas(); // Atualiza os números na tela
+                carregarEstatisticas();
+
             } else {
                 alert('Erro ao inserir. Verifique se o servidor Java está rodando.');
             }
@@ -55,6 +56,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Inicia os contadores ao abrir a página
     carregarEstatisticas();
 });

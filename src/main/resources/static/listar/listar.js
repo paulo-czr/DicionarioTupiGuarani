@@ -1,81 +1,157 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const gradePalavras = document.getElementById('grade-palavras');
-    const totalPalavrasCard = document.getElementById('total-palavras');
-    const primeiraPalavraCard = document.getElementById('primeira-palavra');
-    const ultimaPalavraCard = document.getElementById('ultima-palavra');
-    const textoContadorPequeno = document.querySelector('.text-muted');
+document.addEventListener("DOMContentLoaded", () => {
+  // Seleção de elementos da interface
+  const gradePalavras = document.getElementById("grade-palavras");
+  const totalPalavrasCard = document.getElementById("total-palavras");
+  const primeiraPalavraCard = document.getElementById("primeira-palavra");
+  const ultimaPalavraCard = document.getElementById("ultima-palavra");
 
-    // 1. Função para carregar os dados do Java
-    async function carregarDados() {
-        try {
-            const resposta = await fetch('http://localhost:3000/api/dicionario/listar-em-ordem');
-            const palavras = await resposta.json();
-            
-            atualizarInterface(palavras);
-        } catch (erro) {
-            console.error("Erro ao carregar dicionário:", erro);
-            gradePalavras.innerHTML = '<p class="text-danger">Erro ao conectar com o servidor Java.</p>';
-        }
+  const textoContadorPequeno = document.querySelector(
+    ".icone-dicionario-wrapper + div small"
+  );
+
+  const JAVA_API_URL = "http://localhost:3000/api/dicionario";
+
+  /**
+   * 🔢 CARREGA TOTAL DO BANCO
+   */
+  async function carregarTotalPalavras() {
+    try {
+      const resposta = await fetch(`${JAVA_API_URL}/contador`);
+
+      if (!resposta.ok) {
+        throw new Error("Erro ao buscar contador");
+      }
+
+      const total = await resposta.json();
+
+      totalPalavrasCard.innerText = total;
+
+      if (textoContadorPequeno) {
+        textoContadorPequeno.innerText = `${total} palavras cadastradas`;
+      }
+
+    } catch (erro) {
+      console.error("Erro ao carregar total:", erro);
+      totalPalavrasCard.innerText = "Erro";
     }
+  }
 
-    // 2. Função para construir a interface dinamicamente
-    function atualizarInterface(palavras) {
-        // Limpa a grade
-        gradePalavras.innerHTML = '';
+  /**
+   * 📚 CARREGA LISTA EM ORDEM
+   */
+  async function carregarDados() {
+    try {
+      gradePalavras.innerHTML = `
+        <div class="text-center w-100 p-5">
+          <div class="spinner-border text-primary" role="status"></div>
+          <p class="mt-2 text-muted">Carregando dicionário...</p>
+        </div>`;
 
-        // Atualiza Estatísticas
-        const total = palavras.length;
-        totalPalavrasCard.innerText = total;
-        if (textoContadorPequeno) textoContadorPequeno.innerText = `${total} palavras cadastradas`;
+      const resposta = await fetch(`${JAVA_API_URL}/listar-em-ordem`);
 
-        if (total > 0) {
-            primeiraPalavraCard.innerText = palavras[0].palavra;
-            ultimaPalavraCard.innerText = palavras[total - 1].palavra;
+      if (!resposta.ok) {
+        throw new Error("Erro na resposta do servidor");
+      }
 
-            // Preenche a grade de cards
-            palavras.forEach(p => {
-                const col = document.createElement('div');
-                col.className = 'col-md-6';
-                col.innerHTML = `
-                    <div class="cartao-palavra d-flex justify-content-between align-items-center">
-                        <div>
-                            <div class="termo-principal">${p.palavra}</div>
-                            <div class="traducao-termo">${p.significado}</div>
-                        </div>
-                        <button class="botao-remover-palavra" title="Remover" onclick="removerPalavra('${p.palavra}')">
-                            🗑️
-                        </button>
-                    </div>
-                `;
-                gradePalavras.appendChild(col);
-            });
+      const palavras = await resposta.json();
+
+      atualizarInterface(palavras);
+
+      // 🔥 sincroniza contador após carregar lista
+      carregarTotalPalavras();
+
+    } catch (erro) {
+      console.error("Erro ao carregar dicionário:", erro);
+
+      gradePalavras.innerHTML = `
+        <div class="col-12 text-center p-5">
+          <div class="alert alert-danger shadow-sm">
+            Não foi possível conectar ao servidor Java. <br>
+            <small>Verifique se o backend está rodando em ${JAVA_API_URL}</small>
+          </div>
+        </div>`;
+    }
+  }
+
+  /**
+   * 🎨 ATUALIZA INTERFACE
+   */
+  function atualizarInterface(palavras) {
+    gradePalavras.innerHTML = "";
+
+    const total = palavras.length;
+
+    if (total > 0) {
+      primeiraPalavraCard.innerText = palavras[0].palavra;
+      ultimaPalavraCard.innerText = palavras[total - 1].palavra;
+
+      palavras.forEach((p) => {
+        const col = document.createElement("div");
+        col.className = "col-md-6";
+
+        col.innerHTML = `
+          <div class="cartao-palavra d-flex justify-content-between align-items-center shadow-sm">
+            <div>
+              <div class="termo-principal">${p.palavra}</div>
+              <div class="traducao-termo text-muted">${p.significado}</div>
+            </div>
+            <button class="botao-remover-palavra"
+              title="Remover"
+              onclick="confirmarRemocao('${p.palavra}')">
+              🗑️
+            </button>
+          </div>
+        `;
+
+        gradePalavras.appendChild(col);
+      });
+
+    } else {
+      primeiraPalavraCard.innerText = "-";
+      ultimaPalavraCard.innerText = "-";
+
+      if (textoContadorPequeno) {
+        textoContadorPequeno.innerText = "Nenhuma palavra cadastrada";
+      }
+
+      gradePalavras.innerHTML = `
+        <div class="col-12 text-center py-5">
+          <p class="text-muted fs-5">O dicionário está vazio.</p>
+        </div>`;
+    }
+  }
+
+  /**
+   * 🗑️ REMOVER PALAVRA
+   */
+  window.confirmarRemocao = async (termo) => {
+    if (
+      confirm(`Deseja realmente excluir a palavra "${termo}"?`)
+    ) {
+      try {
+        const response = await fetch(
+          `${JAVA_API_URL}/remover/palavra/${encodeURIComponent(termo)}`,
+          {
+            method: "DELETE",
+          }
+        );
+
+        if (response.ok) {
+          carregarDados(); // recarrega tudo (lista + contador)
         } else {
-            primeiraPalavraCard.innerText = "-";
-            ultimaPalavraCard.innerText = "-";
-            gradePalavras.innerHTML = '<div class="text-center w-100 p-5 text-muted">Dicionário vazio.</div>';
+          const erroMsg = await response.text();
+          alert("Erro ao remover: " + erroMsg);
         }
+
+      } catch (erro) {
+        console.error("Erro na remoção:", erro);
+        alert("Falha ao conectar com o servidor.");
+      }
     }
+  };
 
-    // 3. Função para remover (Exposta globalmente para o onclick)
-    window.removerPalavra = async (termo) => {
-        if (confirm(`Tem certeza que deseja remover "${termo}"?`)) {
-            try {
-                const response = await fetch(`http://localhost:3000/api/dicionario/remover/${termo}`, {
-                    method: 'DELETE'
-                });
-
-                if (response.ok) {
-                    // Recarrega a lista após o Java rebalancear a árvore
-                    carregarDados();
-                } else {
-                    alert("Erro ao remover a palavra.");
-                }
-            } catch (erro) {
-                console.error("Erro na requisição de remoção:", erro);
-            }
-        }
-    };
-
-    // Inicializa a página
-    carregarDados();
+  /**
+   * 🚀 INICIALIZAÇÃO
+   */
+  carregarDados();
 });
