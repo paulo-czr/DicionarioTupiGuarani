@@ -1,12 +1,32 @@
-/* --- GERAL --- */
-body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
+/* ================================================================
+   1. CONFIGURAÇÕES GERAIS E BODY
+   ================================================================ */
+body { 
+    font-family: 'Inter', sans-serif; 
+    margin: 0; 
+    padding: 0; 
+    background-color: #f8f9fa; /* Fundo cinza claro para destacar os cards */
+}
 
-/* --- BARRA DE NAVEGACAO RESPONSIVA --- */
+/* 2. BARRA DE NAVEGAÇÃO (NAVBAR) */
 .navbar { 
     background-color: white !important; 
     border-bottom: 1px solid #f0f0f0; 
     padding: 0.8rem 1.5rem; 
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); /* Sombra suave para dar destaque */
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1); 
+}
+
+.navbar-brand {
+    display: flex !important;
+    align-items: center;
+    gap: 12px; 
+}
+
+/* Força o container de texto a ser flexível e não quebrar linha */
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .logo-icone {
@@ -16,13 +36,23 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0; 
+    width: 42px;  
+    height: 42px;
 }
 
-.titulo-principal { color: #6366f1; font-weight: 700; margin-bottom: 0; line-height: 1; font-size: 1.25rem; }
+/* Garante que o H1 não empurre o subtítulo para longe */
+.titulo-principal { 
+    color: #6366f1; 
+    font-weight: 700; 
+    margin-bottom: 0 !important; 
+    line-height: 1.1; 
+    font-size: 1.25rem; 
+}
+
 .titulo-secundario { color: #ec4899; }
 .subtitulo { font-size: 0.65rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
 
-/* Ajuste dos itens do menu no mobile */
 .nav-pills .nav-link {
     color: #4b5563;
     background-color: #f3f4f6;
@@ -33,31 +63,30 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     align-items: center;
     gap: 8px;
     transition: all 0.2s;
+    margin-left: 8px;
 }
 
-/* Sobrescrevendo a cor padrão do Bootstrap para o botão ativo */
 .nav-pills .nav-link.active {
-    background-color: #6366f1 !important; /* Roxo idêntico ao ícone da logo */
+    background-color: #6366f1 !important; 
     color: white !important;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); /* Sombra suave para dar destaque */
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); 
 }
 
-/* Opcional: efeito ao passar o mouse nos outros botões para combinar */
 .nav-pills .nav-link:hover:not(.active) {
-    background-color: #e0e7ff; /* Um roxo bem clarinho no hover */
+    background-color: #e0e7ff; 
     color: #6366f1;
 }
 
-/* --- CONTEUDO PRINCIPAL RESPONSIVO --- */
+/* --- Coteudo responsivo --- */
 
 .container-principal {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Alinha o conteúdo começando do topo */
+    justify-content: flex-start; 
     align-items: center;        
     min-height: 80vh;
     width: 100%;
-    text-align: center;         /* Garante que textos fiquem centralizados */
+    text-align: center;        
     padding: clamp(40px, 8vh, 80px) 20px; 
 }
 
@@ -81,38 +110,36 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     margin: 0 auto;
 }
 
-/* PESQUISAR PALAVRA TITULO */
+/* Pesquisar palavra titulo */
 
-/* Cor do titulo 'pesquisar palavra' */
 .texto-azul-inserir {
     color: #1d4ed8 !important;
-    font-weight: 800; /* negrito para destacar */
+    font-weight: 800; 
 }
 
 /* Container do Ícone do titulo na main */
 .container-icone-inserir {
     background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
-    border-radius: 12px; /* Cantos arredondados */
-    padding: 10px; /* Espaço interno para o ícone */
+    border-radius: 12px; 
+    padding: 10px; 
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2); /* Sombra azul suave */
+    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2); 
 }
 
-/* Cor do ícone do titulo */
 .boas-vindas-subtitulo.text-muted {
     color: #6b7280 !important; 
 }
 
-/* --- ESTILO DO CARTAO DE PESQUISA --- */
+/* --- Estilo do cartao pesquisa --- */
 
 .cartao-pesquisa {
     background-color: white;
     border-radius: 20px;
     width: 100%;
     max-width: 900px;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); /* Sombra */
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); 
 }
 
 .container-icone-busca {
@@ -135,7 +162,7 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     letter-spacing: -0.5px;
 }
 
-/* --- ENTRADA E BOTAO --- */
+/* --- Entrada e botao --- */
 
 .entrada-personalizada {
     border: 1px solid #e5e7eb;
@@ -160,14 +187,14 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
 }
 
-/* --- ESTILO DAS SUGESTOES --- */
+/* --- Estilo das sugestoes --- */
 
 .cartao-sugestoes {
     background-color: white;
     border-radius: 20px;
     width: 100%;
     max-width: 900px;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); /* Sombra suave */
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); 
 }
 
 .titulo-sugestoes {
@@ -179,7 +206,7 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
 }
 
 .botao-sugestao {
-    background-color: #eff6ff; /* Azul bem clarinho de fundo */
+    background-color: #eff6ff; 
     border: 1px solid #dbeafe;
     color: #1e40af; 
     font-weight: 700;
@@ -195,11 +222,9 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     transform: scale(1.03); 
 }
 
-/* --- ESTILO DO CARTAO INFORMATIVO AZUL --- */
 
 .cartao-informativo-busca {
-    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); /* Gradiente Azul para Roxo */
-    border-radius: 20px;
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); 
     width: 100%;
     max-width: 900px;
     box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
@@ -221,7 +246,6 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     font-weight: 700;
 }
 
-/* Ajuste para que os emojis fiquem alinhados ao topo do texto */
 .lista-explicativa span {
     line-height: 1;
     min-width: 30px;

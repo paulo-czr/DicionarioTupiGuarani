@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const JAVA_API_URL = "http://localhost:3000/api/dicionario";
 
   /**
-   * 🔢 CARREGA TOTAL DO BANCO
+   *  Carrega tudo do banco
    */
   async function carregarTotalPalavras() {
     try {
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /**
-   * 📚 CARREGA LISTA EM ORDEM
+   * CArrega lista em ordem
    */
   async function carregarDados() {
     try {
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       atualizarInterface(palavras);
 
-      // 🔥 sincroniza contador após carregar lista
+      // sincroniza contador após carregar lista
       carregarTotalPalavras();
 
     } catch (erro) {
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /**
-   * 🎨 ATUALIZA INTERFACE
+   * att interface
    */
   function atualizarInterface(palavras) {
     gradePalavras.innerHTML = "";
@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /**
-   * 🗑️ REMOVER PALAVRA
+   * remove paravra
    */
   window.confirmarRemocao = async (termo) => {
     if (
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         if (response.ok) {
-          carregarDados(); // recarrega tudo (lista + contador)
+          carregarDados(); 
         } else {
           const erroMsg = await response.text();
           alert("Erro ao remover: " + erroMsg);
@@ -150,8 +150,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  /**
-   * 🚀 INICIALIZAÇÃO
-   */
+
   carregarDados();
 });

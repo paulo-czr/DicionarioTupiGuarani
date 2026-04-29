@@ -1,80 +1,139 @@
-const API_BASE_URL = 'http://localhost:8080/api/dicionario';
+/**
+ * Configuração da API - Alinhada com seu DicionarioController
+ */
+const API_BASE_URL = 'http://localhost:3000/api/dicionario'; 
 
-// Função para carregar os dados e atualizar a tela
-async function carregarDados() {
-    try {
-        // 1. Busca a lista de palavras (Em Ordem)
-        const response = await fetch(`${API_BASE_URL}/listar-em-ordem`);
-        const palavras = await response.json();
+/**
+ * Mapeamento ajustado para os @GetMapping do seu Controller
+ */
+const tiposTravessia = {
+    'Pré-ordem': 'listar-pre-ordem',
+    'Em Ordem': 'listar-em-ordem',
+    'Pós-ordem': 'listar-pos-ordem',
+    'Profundidade (DFS)': 'listar-pre-ordem' // Em árvores, DFS é equivalente ao Pré-ordem
+};
 
-        renderizarLista(palavras);
-        atualizarEstatisticas(palavras);
-    } catch (error) {
-        console.error("Erro ao carregar dicionário:", error);
-    }
-}
+document.addEventListener('DOMContentLoaded', () => {
+    inicializarEventos();
+    // Inicia com "Em Ordem" por padrão
+    buscarDadosTravessia('Em Ordem');
+});
 
-// Função para desenhar os cartões no HTML
-function renderizarLista(palavras) {
-    const container = document.getElementById('lista-palavras-container');
-    container.innerHTML = ''; // Limpa a lista atual
+/**
+ * Configura os listeners de clique nos botões de seleção
+ */
+function inicializarEventos() {
+    const botoes = document.querySelectorAll('.row.g-3.mb-4 button');
+    
+    botoes.forEach(botao => {
+        botao.addEventListener('click', (e) => {
+            const smallTag = e.currentTarget.querySelector('small');
+            if (!smallTag) return;
 
-    palavras.forEach(p => {
-        const cartao = `
-            <div class="col-md-6">
-                <div class="cartao-palavra d-flex justify-content-between align-items-center">
-                    <div class="conteudo-palavra">
-                        <h5 class="termo-principal">${p.palavra}</h5>
-                        <p class="traducao-termo mb-0">${p.significado}</p>
-                    </div>
-                    <button class="botao-remover-palavra" onclick="removerPalavra('${p.palavra}')" title="Remover palavra">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="3 6 5 6 21 6"></polyline>
-                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                            <line x1="10" y1="11" x2="10" y2="17"></line>
-                            <line x1="14" y1="11" x2="14" y2="17"></line>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        `;
-        container.innerHTML += cartao;
+            const tipoSelecionado = smallTag.innerText;
+            
+            // Atualiza a interface visual (CSS)
+            atualizarBotaoAtivo(e.currentTarget);
+            
+            // Faz a requisição ao backend
+            buscarDadosTravessia(tipoSelecionado);
+        });
     });
 }
 
-// Função para deletar no Java
-async function removerPalavra(termo) {
-    if (confirm(`Tem certeza que deseja remover "${termo}"?`)) {
-        try {
-            const response = await fetch(`${API_BASE_URL}/remover/${termo}`, {
-                method: 'DELETE'
-            });
+/**
+ * Gerencia a troca de classes CSS entre os botões
+ */
+function atualizarBotaoAtivo(botaoClicado) {
+    document.querySelectorAll('.row.g-3.mb-4 button').forEach(btn => {
+        btn.classList.remove('btn-outline-success', 'border-success', 'border-2', 'bg-light', 'active-card');
+        btn.classList.add('btn-outline-light', 'border');
+    });
 
-            if (response.ok) {
-                // Recarrega a lista após deletar
-                carregarDados();
-            } else {
-                alert("Erro ao remover a palavra.");
-            }
-        } catch (error) {
-            console.error("Erro na requisição de remoção:", error);
-        }
-    }
+    botaoClicado.classList.remove('btn-outline-light', 'border');
+    botaoClicado.classList.add('btn-outline-success', 'border-success', 'border-2', 'bg-light', 'active-card');
 }
 
-// Atualiza os cartões de estatística (Top da página)
-function atualizarEstatisticas(palavras) {
-    document.getElementById('contador-total').innerText = palavras.length;
-    document.getElementById('contador-lista').innerText = palavras.length;
+/**
+ * Busca os dados do backend Java (Spring Boot)
+ */
+async function buscarDadosTravessia(tipo) {
+    const endpoint = tiposTravessia[tipo];
+    const listaContainer = document.getElementById('lista-travessia');
     
-    if (palavras.length > 0) {
-        document.getElementById('primeira-palavra').innerText = palavras[0].palavra;
-        document.getElementById('ultima-palavra').innerText = palavras[palavras.length - 1].palavra;
-    } else {
-        document.getElementById('primeira-palavra').innerText = "-";
-        document.getElementById('ultima-palavra').innerText = "-";
+    if (!endpoint) return;
+
+    // Feedback visual de carregamento
+    listaContainer.innerHTML = '<div class="text-center p-5"><div class="spinner-border text-success"></div></div>';
+
+    try {
+        // Chamada ao seu @GetMapping do DicionarioController
+        const response = await fetch(`${API_BASE_URL}/${endpoint}`);
+        
+        if (!response.ok) throw new Error('Erro ao buscar dados do servidor');
+        
+        const dados = await response.json(); 
+        renderizarLista(dados);
+        atualizarTextoExplicativo(tipo);
+        
+    } catch (error) {
+        console.error('Erro:', error);
+        listaContainer.innerHTML = `
+            <div class="alert alert-danger rounded-4">
+                Não foi possível conectar ao servidor Java. Verifique se o backend está rodando.
+            </div>`;
     }
 }
 
-// Inicializa
-document.addEventListener('DOMContentLoaded', carregarDados);
+/**
+ * Injeta o HTML dos itens (Model Palavra) retornados pelo Java
+ */
+function renderizarLista(itens) {
+    const listaContainer = document.getElementById('lista-travessia');
+    listaContainer.innerHTML = ''; 
+
+    if (!itens || itens.length === 0) {
+        listaContainer.innerHTML = '<p class="text-center text-muted">A árvore está vazia no momento.</p>';
+        return;
+    }
+
+    itens.forEach((item, index) => {
+        const itemHtml = `
+            <div class="item-travessia border-gradient">
+                <div class="badge-numero">${index + 1}</div>
+                <div class="flex-grow-1">
+                    <span class="item-palavra">${item.palavra}</span>
+                    <span class="item-seta">→</span>
+                    <span class="item-significado">${item.significado}</span>
+                </div>
+            </div>
+        `;
+        listaContainer.innerHTML += itemHtml;
+    });
+}
+
+/**
+ * Atualiza a legenda baseada na lógica de árvore binária
+ */
+function atualizarTextoExplicativo(tipo) {
+    const legenda = document.querySelector('.alert-success p');
+    const tituloLegenda = document.querySelector('.alert-success strong');
+    
+    if (tituloLegenda) tituloLegenda.innerText = tipo;
+    if (!legenda) return;
+
+    switch (tipo) {
+        case 'Pré-ordem':
+            legenda.innerText = 'Raiz → Esquerda → Direita (Exploração de cima para baixo)';
+            break;
+        case 'Em Ordem':
+            legenda.innerText = 'Esquerda → Raiz → Direita (Garante a ordem alfabética)';
+            break;
+        case 'Pós-ordem':
+            legenda.innerText = 'Esquerda → Direita → Raiz (Utilizado para remover folhas antes dos pais)';
+            break;
+        case 'Profundidade (DFS)':
+            legenda.innerText = 'Explora o máximo possível cada ramo antes de retroceder (Usa Pré-ordem).';
+            break;
+    }
+}
