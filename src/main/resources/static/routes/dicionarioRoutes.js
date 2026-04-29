@@ -10,7 +10,7 @@ routes.get("/contador", async (req, res) => {
     const response = await axios.get(`${JAVA_API_URL}/contador`);
     return res.json(response.data);
   } catch (error) {
-    return res.status(500).json({ error: "Erro ao buscar contador no Java" });
+    return res.status(500).json({ error: "Erro ao buscar contador no Java - routes" });
   }
 });
 
@@ -19,7 +19,7 @@ routes.get("/listar-em-ordem", async (req, res) => {
     const response = await axios.get(`${JAVA_API_URL}/listar-em-ordem`);
     return res.json(response.data);
   } catch (error) {
-    return res.status(500).json({ error: "Erro ao listar palavras em ordem" });
+    return res.status(500).json({ error: "Erro ao listar palavras em ordem - routes" });
   }
 });
 
@@ -28,7 +28,7 @@ routes.get("/listar-pre-ordem", async (req, res) => {
     const response = await axios.get(`${JAVA_API_URL}/listar-pre-ordem`);
     return res.json(response.data);
   } catch (error) {
-    return res.status(500).json({ error: "Erro ao listar palavras em Pré-Ordem" });
+    return res.status(500).json({ error: "Erro ao listar palavras em Pré-Ordem - routes" });
   }
 });
 
@@ -37,7 +37,25 @@ routes.get("/listar-pos-ordem", async (req, res) => {
     const response = await axios.get(`${JAVA_API_URL}/listar-pos-ordem`);
     return res.json(response.data);
   } catch (error) {
-    return res.status(500).json({ error: "Erro ao listar palavras em Pós-Ordem" });
+    return res.status(500).json({ error: "Erro ao listar palavras em Pós-Ordem - routes" });
+  }
+});
+
+routes.get("/listar-amplitude", async (req, res) => {
+  try {
+    const response = await axios.get(`${JAVA_API_URL}/listar-amplitude`);
+    return res.json(response.data);
+  } catch (error) {
+    return res.status(500).json({ error: "Erro ao listar palavras em amplitude - routes" });
+  }
+});
+
+routes.get("/listar-profundidade", async (req, res) => {
+  try {
+    const response = await axios.get(`${JAVA_API_URL}/listar-profundidade`);
+    return res.json(response.data);
+  } catch (error) {
+    return res.status(500).json({ error: "Erro ao listar palavras em profundidade - routes" });
   }
 });
 
@@ -48,7 +66,7 @@ routes.post("/inserir", async (req, res) => {
   } catch (error) {
 
     //Mensagem de erro do Java
-    const msg = error.response?.data || "Erro ao salvar no banco via Java";
+    const msg = error.response?.data || "Erro ao salvar no banco via Java - routes";
     return res.status(error.response?.status || 500).json({ error: msg });
   }
 });
@@ -61,7 +79,7 @@ routes.get("/pesquisar/palavra/:termo", async (req, res) => {
     );
     return res.json(response.data);
   } catch (error) {
-    return res.status(404).json({ error: "Palavra não encontrada" });
+    return res.status(404).json({ error: "Palavra não encontrada - routes" });
   }
 });
 
@@ -76,7 +94,7 @@ routes.put("/atualizar/:id", async (req, res) => {
   } catch (error) {
     return res
       .status(error.response?.status || 500)
-      .json({ error: "Erro ao atualizar palavra" });
+      .json({ error: "Erro ao atualizar palavra - routes" });
   }
 });
 
@@ -88,7 +106,7 @@ routes.delete("/remover/palavra/:termo", async (req, res) => {
   } catch (error) {
     return res
       .status(error.response?.status || 500)
-      .json({ error: "Erro ao remover por palavra" });
+      .json({ error: "Erro ao remover por palavra - routes" });
   }
 });
 
@@ -100,7 +118,7 @@ routes.delete("/remover/id/:id", async (req, res) => {
   } catch (error) {
     return res
       .status(error.response?.status || 500)
-      .json({ error: "Erro ao remover por ID" });
+      .json({ error: "Erro ao remover por ID - routes" });
   }
 });
 
