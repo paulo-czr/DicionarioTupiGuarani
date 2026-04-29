@@ -37,11 +37,11 @@ class DicionarioApp {
       });
 
       if (response.ok) {
-        alert("✅ Palavra inserida e Árvore AVL balanceada!");
+        alert("Palavra inserida e Árvore AVL balanceada!");
         this.form.reset();
         this.atualizarEstatisticas();
       } else {
-        alert("❌ Erro ao salvar palavra.");
+        alert("Erro ao salvar palavra.");
       }
     } catch (error) {
       console.error("Erro de conexão:", error);

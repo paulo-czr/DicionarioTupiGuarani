@@ -1,4 +1,3 @@
-// routes/dicionarioRoutes.js
 import { Router } from "express";
 import axios from "axios";
 
