@@ -52,9 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             <strong>${p.significado}</strong>
                         </p>
                     </div>
-                    <div class="fs-1 opacity-50">🌳</div>
                 </div>
-            </div>`;
+            </div>`
     }
 
     function exibirErro(mensagem) {

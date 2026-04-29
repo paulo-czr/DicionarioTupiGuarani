@@ -85,6 +85,23 @@ public class DicionarioService {
     }
 
     /**
+     * Lista todas as Palavras presentes na ávore por Amplitude
+     * * @return Lista em Amplitude
+     */
+    public List<Palavra> buscarTodasPalavrasAmplitude() {
+        return arvore.listarEmAmplitude();
+    }
+
+    
+    /**
+     * Lista todas as Palavras presentes na ávore por Profundidade
+     * * @return Lista em Profundidade
+     */
+    public List<Palavra> buscarTodasPalavrasProfundidade() {
+        return arvore.listarEmProfundidade();
+    }
+
+    /**
      * Pesquisa uma palavra na Árvore AVL através do termo informado
      * * @param termo O texto da palavra a ser buscada
      * 
