@@ -1,7 +1,7 @@
 /* --- GERAL --- */
 body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
 
-/* --- NAV-BAR RESPONSIVA --- */
+/* --- BARRA DE NAVEGACAO RESPONSIVA --- */
 .navbar { 
     background-color: white !important; 
     border-bottom: 1px solid #f0f0f0; 
@@ -9,7 +9,7 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); /* Sombra suave para dar destaque */
 }
 
-.brand-icon {
+.logo-icone {
     background-color: #6366f1;
     border-radius: 12px;
     padding: 8px;
@@ -18,11 +18,11 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     justify-content: center;
 }
 
-.title-main { color: #6366f1; font-weight: 700; margin-bottom: 0; line-height: 1; font-size: 1.25rem; }
-.title-sub { color: #ec4899; }
-.subtitle { font-size: 0.65rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+.titulo-principal { color: #6366f1; font-weight: 700; margin-bottom: 0; line-height: 1; font-size: 1.25rem; }
+.titulo-secundario { color: #ec4899; }
+.subtitulo { font-size: 0.65rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
 
-/* Ajuste dos itens do menu no mobile */
+/* Ajuste dos itens do mMenu no mobile */
 .nav-pills .nav-link {
     color: #4b5563;
     background-color: #f3f4f6;
@@ -35,37 +35,33 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     transition: all 0.2s;
 }
 
-
-/* Sobrescrevendo a cor padrão do Bootstrap para o botão ativo 'INICIO'*/
 .nav-pills .nav-link.active {
-    background-color: #6366f1 !important; /* Roxo idêntico ao ícone da logo */
+    background-color: #6366f1 !important; /* cor igual ao ícone da logo */
     color: white !important;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); /* Sombra suave para dar destaque */
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); /* Sombra */
 }
 
-/* Opcional: efeito ao passar o mouse nos outros botões para combinar */
+/* efeito ao passar o mouse nos outros botões para combinar */
 .nav-pills .nav-link:hover:not(.active) {
-    background-color: #e0e7ff; /* Um roxo bem clarinho no hover */
+    background-color: #e0e7ff; 
     color: #6366f1;
 }
 
+/* --- CONTEUDO PRINCIPAL RESPONSIVO --- */
 
-/* --- MAIN RESPONSIVO --- */
-
-.main-container {
+.container-principal {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Alinha o conteúdo começando do topo */
-    align-items: center;        /* MUDANÇA AQUI: Centraliza tudo horizontalmente */
+    justify-content: flex-start; 
     min-height: 80vh;
     width: 100%;
-    text-align: center;         /* Garante que textos fiquem centralizados */
+    text-align: center;         
     padding: clamp(40px, 8vh, 80px) 20px; 
 }
 
-.welcome-wrapper { text-align: center; max-width: 800px; width: 100%; }
+.boas-vindas-wrapper { text-align: center; max-width: 800px; width: 100%; }
 
-.welcome-title {
+.boas-vindas-titulo {
     font-size: clamp(2rem, 10vw, 4rem); 
     font-weight: 800;
     letter-spacing: -1.5px;
@@ -73,58 +69,53 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     line-height: 1.1;
 }
 
-.text-purple { color: #28b05a; }
-.text-pink { color: #ec4899; }
+.texto-roxo { color: #28b05a; }
+.texto-rosa { color: #ec4899; }
 
-.welcome-subtitle {
+.boas-vindas-subtitulo {
     color: #6b7280;
     font-size: clamp(0.95rem, 4vw, 1.2rem);
     max-width: 500px;
     margin: 0 auto;
 }
 
-/*INSERIR PALAVRA TITULO*/
+/*  COLOCSAR PALAVRA TITULO */
 
-/* Cor do titulo 'inserir palavra'*/
-.text-green-inserir {
+/* Cor do titulo inserir palavra */
+.texto-verde-inserir {
     color: #10b981 !important;
-    font-weight: 800; /*negrito para destacar */
+    font-weight: 800; 
 }
 
 /* Container do Ícone do titulo na main */
-.icon-inserir-container {
+.container-icone-inserir {
     background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-    border-radius: 12px; /* Cantos arredondados */
-    padding: 10px; /* Espaço interno para o ícone */
+    border-radius: 12px; 
+    padding: 10px; 
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2); /* Sombra verde suave */
+    box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2); /* Sombra verde */
 }
 
-/* Cor do ícone do titulo 'inserir palavra' */
-.welcome-subtitle.text-muted {
+/* Cor do ícone inserir palavra*/
+.boas-vindas-subtitulo.text-muted {
     color: #6b7280 !important; 
 }
 
+/* --- ESTILO DO CARTAO DE INSERÇÃO --- */
 
-
-
-
-/* Estilo para o formulário de inserção */
-/* --- ESTILO DO CARD DE INSERÇÃO --- */
-
-.form-card {
+.cartao-formulario {
     background: #f8fafc; 
     border: 1px solid #e2e8f0;
     border-radius: 20px;
     padding: 2.5rem;
     width: 100% !important;
-    max-width: 950px !important;/*tamanho maximo do card*/
+    max-width: 950px !important; 
     box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
 }
 
-.form-title {
+.titulo-formulario {
     color: #059669; 
     font-weight: 700;
     font-size: 1.5rem;
@@ -137,22 +128,20 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     margin-bottom: 8px;
 }
 
-/* Inputs arredondados*/
-.custom-input {
+.entrada-customizada {
     border-radius: 12px !important;
     padding: 12px 16px !important;
     border: 1.5px solid #e2e8f0 !important;
     transition: all 0.3s ease;
 }
 
-.custom-input:focus {
+.entrada-customizada:focus {
     border-color: #10b981 !important;
     box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1) !important;
     outline: none;
 }
 
-/* Botão Verde Vibrante */
-.btn-inserir-submit {
+.btn-enviar-insercao {
     background-color: #10b981 !important;
     color: white !important;
     font-weight: 700;
@@ -167,11 +156,60 @@ body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
     transition: transform 0.2s, background-color 0.2s;
 }
 
-.btn-inserir-submit:hover {
+.btn-enviar-insercao:hover {
     background-color: #059669 !important;
     transform: translateY(-2px);
 }
 
-.btn-inserir-submit:active {
+.btn-enviar-insercao:active {
     transform: translateY(0);
+}
+
+/* --- ESTILO Das palavras adicionadas --- */
+
+.cartao-palavra {
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.cartao-palavra:hover {
+    transform: translateY(-5px); 
+}
+
+.cartao-estatistica {
+    border-radius: 15px;
+    padding: 30px 20px;
+    text-align: center;
+    color: white;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.cartao-estatistica:hover {
+    transform: translateY(-5px);
+}
+
+.numero-estatistica {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.rotulo-estatistica {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0;
+    opacity: 0.9;
+}
+
+.gradiente-verde {
+    background: linear-gradient(135deg, #00b09b, #96c93d);
+}
+
+.gradiente-azul {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+}
+
+.gradiente-roxo {
+    background: linear-gradient(135deg, #8e2de2, #4a00e0);
 }

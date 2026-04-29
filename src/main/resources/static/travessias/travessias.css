@@ -1,0 +1,267 @@
+/* --- GERAL --- */
+body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
+
+/* --- BARRA DE NAVEGACAO RESPONSIVA --- */
+.navbar { 
+    background-color: white !important; 
+    border-bottom: 1px solid #f0f0f0; 
+    padding: 0.8rem 1.5rem; 
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); 
+}
+
+.logo-icone {
+    background-color: #6366f1;
+    border-radius: 12px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.titulo-principal { color: #6366f1; font-weight: 700; margin-bottom: 0; line-height: 1; font-size: 1.25rem; }
+.titulo-secundario { color: #ec4899; }
+.subtitulo { font-size: 0.65rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* Ajuste dos itens do menu no mobile */
+.nav-pills .nav-link {
+    color: #4b5563;
+    background-color: #f3f4f6;
+    border-radius: 12px;
+    font-weight: 500;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+/* Sobrescrevendo a cor padrão do Bootstrap para o botão ativo 'INICIO'*/
+.nav-pills .nav-link.active {
+    background-color: #6366f1 !important;
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+/* efeito ao passar o mouse nos outros botões para combinar */
+.nav-pills .nav-link:hover:not(.active) {
+    background-color: #e0e7ff; 
+    color: #6366f1;
+}
+
+/* --- MAIN RESPONSIVO --- */
+
+/* --- CONTEUDO PRINCIPAL TRAVESSIAS --- */
+
+.container-principal {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;        
+    min-height: auto; 
+    width: 100%;
+    text-align: center;
+    padding: 60px 50px 50px 50px; 
+}
+
+.boas-vindas-wrapper { 
+    text-align: center; 
+    max-width: 800px; 
+    width: 100%; 
+}
+
+/* Container do Ícone Laranja/Vermelho */
+.container-icone-inserir {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(255, 77, 0, 0.2);
+}
+
+.boas-vindas-titulo {
+    /* Diminuído para combinar com o estilo da segunda imagem */
+    font-size: clamp(1.8rem, 6vw, 2.8rem); 
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 0; /* Removido pois o gap do Bootstrap já cuida disso */
+    line-height: 1.1;
+    color: #FF2A00; /* Vermelho vibrante da imagem */
+}
+
+.boas-vindas-subtitulo {
+    color: #6b7280;
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
+    max-width: 600px; /* Aumentado um pouco para a frase fluir melhor */
+    margin: 15px auto 0;
+    font-weight: 400;
+}
+
+/* --- CARDS DE SELEÇÃO (BOTÕES) --- */
+.btn-outline-light.border {
+    background-color: white;
+    border: 1px solid #e2e8f0 !important;
+    color: #1e293b !important;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-light.border:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Botão Ativo (Exemplo Profundidade na imagem) */
+.col .active-card {
+    border: 1px solid #fee2e2 !important;
+    background-color: #fef2f2 !important;
+    position: relative;
+}
+
+.col .active-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #ef4444; /* Linha vermelha embaixo se desejar */
+}
+
+/* Cores dos Ícones nos botões */
+.bg-primary { background-color: #0ea5e9 !important; } /* Azul Pré-ordem */
+.bg-success { background-color: #22c55e !important; } /* Verde Em Ordem */
+.bg-purple { background-color: #a855f7 !important; }  /* Roxo Pós-ordem */
+.bg-orange { background-color: #f97316 !important; }  /* Laranja Largura */
+.bg-danger { background-color: #ef4444 !important; }  /* Vermelho Profundidade */
+
+/* --- ALERT EXPLICATIVO --- */
+.alert-custom {
+    background-color: #fff1f2; /* Fundo rosado conforme a imagem */
+    border: 1.5px solid #fecaca;
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.alert-custom .icon-box {
+    background-color: #ef4444;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+/* --- LISTA DE ITENS --- */
+.item-travessia {
+    background-color: white;
+    border: 1px solid #f1f5f9;
+    border-radius: 15px;
+    padding: 18px 25px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.badge-numero {
+    background-color: #ff3b3b;
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.item-palavra {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #0f172a;
+}
+
+.item-seta {
+    color: #cbd5e1;
+    margin: 0 10px;
+}
+
+.item-significado {
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+/* Borda lateral colorida (gradiente da imagem) */
+.border-gradient {
+    position: relative;
+    overflow: hidden;
+}
+
+.border-gradient::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 15%;
+    bottom: 15%;
+    width: 5px;
+    background: linear-gradient(to bottom, #a855f7, #ec4899);
+    border-radius: 5px 0 0 5px;
+}
+
+/* Estilo para os itens injetados pelo JS */
+.item-travessia {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 1rem;
+    background: white;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Barra lateral colorida para dar um toque especial */
+.border-gradient::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, #a855f7, #ec4899);
+}
+
+.badge-numero {
+    background-color: #198754; /* Verde sucesso */
+    color: white;
+    border-radius: 50%;
+    min-width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 1rem;
+}
+
+.item-palavra {
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.item-seta {
+    color: #6c757d;
+    font-size: 0.875rem;
+    margin-right: 0.5rem;
+}
+
+.item-significado {
+    color: #6c757d;
+    font-size: 0.875rem;
+}

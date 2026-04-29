@@ -1,0 +1,253 @@
+/* ================================================================
+   1. CONFIGURAÇÕES GERAIS E BODY
+   ================================================================ */
+body { 
+    font-family: 'Inter', sans-serif; 
+    margin: 0; 
+    padding: 0; 
+    background-color: #f8f9fa; /* Fundo cinza claro para destacar os cards */
+}
+
+/* 2. BARRA DE NAVEGAÇÃO (NAVBAR) */
+.navbar { 
+    background-color: white !important; 
+    border-bottom: 1px solid #f0f0f0; 
+    padding: 0.8rem 1.5rem; 
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1); 
+}
+
+.navbar-brand {
+    display: flex !important;
+    align-items: center;
+    gap: 12px; 
+}
+
+/* Força o container de texto a ser flexível e não quebrar linha */
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo-icone {
+    background-color: #6366f1;
+    border-radius: 12px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; 
+    width: 42px;  
+    height: 42px;
+}
+
+/* Garante que o H1 não empurre o subtítulo para longe */
+.titulo-principal { 
+    color: #6366f1; 
+    font-weight: 700; 
+    margin-bottom: 0 !important; 
+    line-height: 1.1; 
+    font-size: 1.25rem; 
+}
+
+.titulo-secundario { color: #ec4899; }
+.subtitulo { font-size: 0.65rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.nav-pills .nav-link {
+    color: #4b5563;
+    background-color: #f3f4f6;
+    border-radius: 12px;
+    font-weight: 500;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    margin-left: 8px;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #6366f1 !important; 
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); 
+}
+
+.nav-pills .nav-link:hover:not(.active) {
+    background-color: #e0e7ff; 
+    color: #6366f1;
+}
+
+/* --- Coteudo responsivo --- */
+
+.container-principal {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center;        
+    min-height: 80vh;
+    width: 100%;
+    text-align: center;        
+    padding: clamp(40px, 8vh, 80px) 20px; 
+}
+
+.boas-vindas-wrapper { text-align: center; max-width: 800px; width: 100%; }
+
+.boas-vindas-titulo {
+    font-size: clamp(2rem, 10vw, 4rem); 
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.texto-roxo { color: #28b05a; }
+.texto-rosa { color: #ec4899; }
+
+.boas-vindas-subtitulo {
+    color: #6b7280;
+    font-size: clamp(0.95rem, 4vw, 1.2rem);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Pesquisar palavra titulo */
+
+.texto-azul-inserir {
+    color: #1d4ed8 !important;
+    font-weight: 800; 
+}
+
+/* Container do Ícone do titulo na main */
+.container-icone-inserir {
+    background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+    border-radius: 12px; 
+    padding: 10px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2); 
+}
+
+.boas-vindas-subtitulo.text-muted {
+    color: #6b7280 !important; 
+}
+
+/* --- Estilo do cartao pesquisa --- */
+
+.cartao-pesquisa {
+    background-color: white;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); 
+}
+
+.container-icone-busca {
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fundo-azul-busca {
+    background-color: #3b82f6;
+}
+
+.sombra-busca {
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+}
+
+.titulo-busca {
+    letter-spacing: -0.5px;
+}
+
+/* --- Entrada e botao --- */
+
+.entrada-personalizada {
+    border: 1px solid #e5e7eb;
+    color: #374151;
+}
+
+.entrada-personalizada::placeholder {
+    color: #9ca3af;
+}
+
+.botao-buscar-enviar {
+    /* Gradiente Azul/Ciano */
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white !important;
+    border: none !important;
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.botao-buscar-enviar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+}
+
+/* --- Estilo das sugestoes --- */
+
+.cartao-sugestoes {
+    background-color: white;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); 
+}
+
+.titulo-sugestoes {
+    color: #1e293b; 
+}
+
+.texto-azul-primario {
+    color: #2563eb; 
+}
+
+.botao-sugestao {
+    background-color: #eff6ff; 
+    border: 1px solid #dbeafe;
+    color: #1e40af; 
+    font-weight: 700;
+    border-radius: 12px;
+    padding: 12px 10px;
+    transition: all 0.2s ease;
+}
+
+.botao-sugestao:hover {
+    background-color: #dbeafe;
+    border-color: #bfdbfe;
+    color: #1d4ed8;
+    transform: scale(1.03); 
+}
+
+
+.cartao-informativo-busca {
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); 
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+}
+
+.cartao-informativo-busca h3 {
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+}
+
+.lista-explicativa p {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    opacity: 0.95;
+}
+
+.lista-explicativa strong {
+    color: #fff;
+    font-weight: 700;
+}
+
+.lista-explicativa span {
+    line-height: 1;
+    min-width: 30px;
+    text-align: center;
+}
