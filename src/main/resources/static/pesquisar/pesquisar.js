@@ -1,4 +1,3 @@
-// Definimos buscarPalavra fora para que ela seja acessível por qualquer parte do script
 let buscarPalavra; 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -6,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const campoTupi = document.getElementById('campo-tupi');
     const mainContainer = document.querySelector('main');
     
-    // Criar o container de resultados
     const resultadoContainer = document.createElement('div');
     resultadoContainer.id = 'resultado-pesquisa';
     resultadoContainer.className = 'd-flex justify-content-center mt-4';
@@ -16,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const JAVA_API_URL = "http://localhost:3000/api/dicionario";
 
-    // Atribuímos a lógica à variável buscarPalavra
     buscarPalavra = async (termo) => {
         if (!termo) return;
 
@@ -64,13 +61,11 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>`;
     }
 
-    // Evento do Formulário
     formPesquisa.addEventListener('submit', (e) => {
         e.preventDefault();
         buscarPalavra(campoTupi.value.trim().toLowerCase());
     });
 
-    // Função Global vinculada ao window
     window.preencherBusca = (termo) => {
         campoTupi.value = termo;
         buscarPalavra(termo.toLowerCase());

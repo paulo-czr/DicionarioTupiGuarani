@@ -65,7 +65,6 @@ routes.post("/inserir", async (req, res) => {
     return res.status(201).json(response.data);
   } catch (error) {
 
-    //Mensagem de erro do Java
     const msg = error.response?.data || "Erro ao salvar no banco via Java - routes";
     return res.status(error.response?.status || 500).json({ error: msg });
   }

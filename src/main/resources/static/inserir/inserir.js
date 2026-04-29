@@ -1,12 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form');
-    // Pegando os elementos de estatística do seu HTML
     const totalPalavrasElement = document.getElementById('total-palavras');
     const nosArvoreElement = document.getElementById('nos-arvore');
 
     const JAVA_API_URL = "http://localhost:3000/api/dicionario";
 
-    // 1. Função para carregar o contador atualizado do Java
     async function carregarEstatisticas() {
         try {
             // Rota do Controller
@@ -33,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            // Rota exata do seu PostMapping no Controller
             const response = await fetch(`${JAVA_API_URL}/inserir`, {
                 method: 'POST',
                 headers: {

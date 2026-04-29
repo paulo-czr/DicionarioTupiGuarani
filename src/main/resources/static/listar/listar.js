@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Seleção de elementos da interface
   const gradePalavras = document.getElementById("grade-palavras");
   const totalPalavrasCard = document.getElementById("total-palavras");
   const primeiraPalavraCard = document.getElementById("primeira-palavra");
@@ -57,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       atualizarInterface(palavras);
 
-      // sincroniza contador após carregar lista
       carregarTotalPalavras();
 
     } catch (erro) {
@@ -122,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /**
-   * remove paravra
+   * remove palavra
    */
   window.confirmarRemocao = async (termo) => {
     if (

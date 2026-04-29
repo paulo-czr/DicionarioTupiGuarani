@@ -1,6 +1,3 @@
-/**
- * Configuração da API
- */
 const API_BASE_URL = 'http://localhost:3000/api/dicionario'; 
 
 /**
@@ -11,7 +8,7 @@ const tiposTravessia = {
     'Em Ordem': 'listar-em-ordem',
     'Pós-ordem': 'listar-pos-ordem',
     'Profundidade (DFS)': 'listar-pre-ordem',
-    'Amplitude (BFS)': 'listar-amplitude' // Novo endpoint
+    'Amplitude (BFS)': 'listar-amplitude' 
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function inicializarEventos() {
-    // Seletor ajustado para encontrar os botões dentro das colunas
     const botoes = document.querySelectorAll('.row button');
     
     botoes.forEach(botao => {
