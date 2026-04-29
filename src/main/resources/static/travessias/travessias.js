@@ -1,29 +1,27 @@
 /**
- * Configuração da API - Alinhada com seu DicionarioController
+ * Configuração da API
  */
 const API_BASE_URL = 'http://localhost:3000/api/dicionario'; 
 
 /**
- * Mapeamento ajustado para os @GetMapping do seu Controller
+ * Mapeamento ajustado para incluir Amplitude (BFS)
  */
 const tiposTravessia = {
     'Pré-ordem': 'listar-pre-ordem',
     'Em Ordem': 'listar-em-ordem',
     'Pós-ordem': 'listar-pos-ordem',
-    'Profundidade (DFS)': 'listar-pre-ordem' // Em árvores, DFS é equivalente ao Pré-ordem
+    'Profundidade (DFS)': 'listar-pre-ordem',
+    'Amplitude (BFS)': 'listar-amplitude' // Novo endpoint
 };
 
 document.addEventListener('DOMContentLoaded', () => {
     inicializarEventos();
-    // Inicia com "Em Ordem" por padrão
     buscarDadosTravessia('Em Ordem');
 });
 
-/**
- * Configura os listeners de clique nos botões de seleção
- */
 function inicializarEventos() {
-    const botoes = document.querySelectorAll('.row.g-3.mb-4 button');
+    // Seletor ajustado para encontrar os botões dentro das colunas
+    const botoes = document.querySelectorAll('.row button');
     
     botoes.forEach(botao => {
         botao.addEventListener('click', (e) => {
@@ -31,21 +29,14 @@ function inicializarEventos() {
             if (!smallTag) return;
 
             const tipoSelecionado = smallTag.innerText;
-            
-            // Atualiza a interface visual (CSS)
             atualizarBotaoAtivo(e.currentTarget);
-            
-            // Faz a requisição ao backend
             buscarDadosTravessia(tipoSelecionado);
         });
     });
 }
 
-/**
- * Gerencia a troca de classes CSS entre os botões
- */
 function atualizarBotaoAtivo(botaoClicado) {
-    document.querySelectorAll('.row.g-3.mb-4 button').forEach(btn => {
+    document.querySelectorAll('.row button').forEach(btn => {
         btn.classList.remove('btn-outline-success', 'border-success', 'border-2', 'bg-light', 'active-card');
         btn.classList.add('btn-outline-light', 'border');
     });
@@ -54,22 +45,16 @@ function atualizarBotaoAtivo(botaoClicado) {
     botaoClicado.classList.add('btn-outline-success', 'border-success', 'border-2', 'bg-light', 'active-card');
 }
 
-/**
- * Busca os dados do backend Java (Spring Boot)
- */
 async function buscarDadosTravessia(tipo) {
     const endpoint = tiposTravessia[tipo];
     const listaContainer = document.getElementById('lista-travessia');
     
     if (!endpoint) return;
 
-    // Feedback visual de carregamento
     listaContainer.innerHTML = '<div class="text-center p-5"><div class="spinner-border text-success"></div></div>';
 
     try {
-        // Chamada ao seu @GetMapping do DicionarioController
         const response = await fetch(`${API_BASE_URL}/${endpoint}`);
-        
         if (!response.ok) throw new Error('Erro ao buscar dados do servidor');
         
         const dados = await response.json(); 
@@ -80,14 +65,11 @@ async function buscarDadosTravessia(tipo) {
         console.error('Erro:', error);
         listaContainer.innerHTML = `
             <div class="alert alert-danger rounded-4">
-                Não foi possível conectar ao servidor Java. Verifique se o backend está rodando.
+                Erro ao conectar ao backend na porta 3000. Verifique se o endpoint <strong>/${endpoint}</strong> existe.
             </div>`;
     }
 }
 
-/**
- * Injeta o HTML dos itens (Model Palavra) retornados pelo Java
- */
 function renderizarLista(itens) {
     const listaContainer = document.getElementById('lista-travessia');
     listaContainer.innerHTML = ''; 
@@ -106,15 +88,11 @@ function renderizarLista(itens) {
                     <span class="item-seta">→</span>
                     <span class="item-significado">${item.significado}</span>
                 </div>
-            </div>
-        `;
+            </div>`;
         listaContainer.innerHTML += itemHtml;
     });
 }
 
-/**
- * Atualiza a legenda baseada na lógica de árvore binária
- */
 function atualizarTextoExplicativo(tipo) {
     const legenda = document.querySelector('.alert-success p');
     const tituloLegenda = document.querySelector('.alert-success strong');
@@ -124,16 +102,19 @@ function atualizarTextoExplicativo(tipo) {
 
     switch (tipo) {
         case 'Pré-ordem':
-            legenda.innerText = 'Raiz → Esquerda → Direita (Exploração de cima para baixo)';
+            legenda.innerText = 'Raiz → Esquerda → Direita (Exploração de cima para baixo).';
             break;
         case 'Em Ordem':
-            legenda.innerText = 'Esquerda → Raiz → Direita (Garante a ordem alfabética)';
+            legenda.innerText = 'Esquerda → Raiz → Direita (Garante a ordem alfabética).';
             break;
         case 'Pós-ordem':
-            legenda.innerText = 'Esquerda → Direita → Raiz (Utilizado para remover folhas antes dos pais)';
+            legenda.innerText = 'Esquerda → Direita → Raiz (Processa os filhos antes do pai).';
             break;
         case 'Profundidade (DFS)':
-            legenda.innerText = 'Explora o máximo possível cada ramo antes de retroceder (Usa Pré-ordem).';
+            legenda.innerText = 'Explora o máximo possível cada ramo antes de retroceder.';
+            break;
+        case 'Amplitude (BFS)':
+            legenda.innerText = 'Percorre a árvore nível por nível (horizontalmente), da esquerda para a direita.';
             break;
     }
 }
