@@ -386,10 +386,10 @@ public class ArvoreAvl {
      * 
      * @return Lista de Palavra Entity na ordem de profundidade.
      */
-    public void listarEmProfundide() {
+    public List<Palavra> listarEmProfundidade() {
         List<Palavra> lista = new ArrayList<>();
         if (this.raiz == null)
-            return;
+            return lista;
 
         Stack<NoAvl> pilha = new Stack<>();
         pilha.push(this.raiz);
@@ -406,5 +406,6 @@ public class ArvoreAvl {
             if (noAtual.getEsquerda() != null)
                 pilha.push(noAtual.getEsquerda());
         }
+        return lista;
     }
 }

@@ -54,6 +54,18 @@ public class DicionarioController {
         return ResponseEntity.ok(lista);
     }
 
+    @GetMapping("/listar-amplitude")
+    public ResponseEntity<List<Palavra>> listarAmplitude() {
+        List<Palavra> lista = service.buscarTodasPalavrasAmplitude();
+        return ResponseEntity.ok(lista);
+    }
+
+    @GetMapping("/listar-profundidade")
+    public ResponseEntity<List<Palavra>> listarProfundidade() {
+        List<Palavra> lista = service.buscarTodasPalavrasProfundidade();
+        return ResponseEntity.ok(lista);
+    }
+
     @GetMapping("/pesquisar/palavra/{termo}")
     public ResponseEntity<Palavra> pesquisarPalavraPorTermo(@PathVariable String termo) {
         try {
