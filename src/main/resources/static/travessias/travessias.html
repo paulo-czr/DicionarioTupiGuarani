@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travessias</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="travessias.css">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                    <div class="logo-icone me-3">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-0.5-5.11" />
+                            <path d="M4 19.5h16" />
+                        </svg>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <h1 class="h4 titulo-principal mb-0" style="line-height: 1.2;">
+                            Dicionário <span class="titulo-secundario">Tupi-Guarani</span>
+                        </h1>
+                        <div class="subtitulo" style="line-height: 1;">Árvore Binária de Busca</div>
+                    </div>
+                </a>
+
+                <div class="ms-auto">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">
+                                <i class="bi bi-house-door me-1"></i> Início
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../inserir/inserir.html">
+                                <i class="bi bi-plus-circle me-1"></i> Inserir
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../pesquisar/pesquisar.html">
+                                <i class="bi bi-search me-1"></i> Pesquisar
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../listar/listar.html">
+                                <i class="bi bi-list-ul me-1"></i> Listar
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="../travessias/travessias.html">
+                                <i class="bi bi-diagram-3 me-1"></i> Travessias
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container py-5">
+
+        <div class="container-cabecalho-alinha mb-5">
+            <div class="d-flex align-items-center justify-content-center gap-3">
+                <div class="circulo-icone-topo m-0">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="18" cy="5" r="3" />
+                        <circle cx="6" cy="12" r="3" />
+                        <circle cx="18" cy="19" r="3" />
+                        <path d="M9 12h2a2 2 0 0 0 2-2V7a2 2 0 0 1 2-2h1" />
+                        <path d="M9 12h2a2 2 0 0 1 2 2v3a2 2 0 0 0 2 2h1" />
+                    </svg>
+                </div>
+
+                <div class="text-start">
+                    <h1 class="fw-bold m-0" style="line-height: 1;">
+                        <span class="texto-verde-listar">Travessias</span>
+                        <span class="texto-terra-listar">da Árvore</span>
+                    </h1>
+                    <p class="text-muted m-0 mt-1">Visualize diferentes formas de percorrer a estrutura da árvore</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-travessias shadow-sm mb-4">
+
+            <div class="d-flex align-items-center mb-4">
+                <div class="icone-dicionario-wrapper me-3">
+                    <i class="bi bi-list-ul text-white fs-5"></i>
+                </div>
+                <div>
+                    <h5 class="fw-bold m-0 texto-verde-listar">Visualização de Travessias</h5>
+                </div>
+            </div>
+
+            <!-- Seletor de Tipos de Travessia -->
+            <div class="row g-3 mb-4" id="seletor-travessias">
+                <div class="col-6 col-md">
+                    <button type="button" data-tipo="Pré-ordem"
+                        class="botao-tipo-travessia w-100 p-3 d-flex flex-column align-items-center gap-2 tipo-preordem">
+                        <div class="caixa-icone-tipo fundo-preordem"><i class="bi bi-diagram-3"></i></div>
+                        <small class="fw-bold">Pré-ordem</small>
+                    </button>
+                </div>
+                <div class="col-6 col-md">
+                    <button type="button" data-tipo="Em Ordem"
+                        class="botao-tipo-travessia ativo w-100 p-3 d-flex flex-column align-items-center gap-2 tipo-emordem">
+                        <div class="caixa-icone-tipo fundo-emordem"><i class="bi bi-list-ul"></i></div>
+                        <small class="fw-bold">Em Ordem</small>
+                    </button>
+                </div>
+                <div class="col-6 col-md">
+                    <button type="button" data-tipo="Pós-ordem"
+                        class="botao-tipo-travessia w-100 p-3 d-flex flex-column align-items-center gap-2 tipo-posordem">
+                        <div class="caixa-icone-tipo fundo-posordem"><i class="bi bi-arrow-down"></i></div>
+                        <small class="fw-bold">Pós-ordem</small>
+                    </button>
+                </div>
+                <div class="col-6 col-md">
+                    <button type="button" data-tipo="Profundidade (DFS)"
+                        class="botao-tipo-travessia w-100 p-3 d-flex flex-column align-items-center gap-2 tipo-dfs">
+                        <div class="caixa-icone-tipo fundo-dfs"><i class="bi bi-layers"></i></div>
+                        <small class="fw-bold">Profundidade (DFS)</small>
+                    </button>
+                </div>
+                <div class="col-6 col-md">
+                    <button type="button" data-tipo="Amplitude (BFS)"
+                        class="botao-tipo-travessia w-100 p-3 d-flex flex-column align-items-center gap-2 tipo-bfs">
+                        <div class="caixa-icone-tipo fundo-bfs"><i class="bi bi-layers-half"></i></div>
+                        <small class="fw-bold">Amplitude (BFS)</small>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Explicação do Método Selecionado -->
+            <div class="alerta-explicativo tipo-emordem mb-4" id="alerta-explicativo">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <div class="caixa-icone-tipo fundo-emordem" id="icone-alerta">
+                        <i class="bi bi-list-ul"></i>
+                    </div>
+                    <strong class="titulo-alerta" id="titulo-alerta">Em Ordem</strong>
+                </div>
+                <p class="legenda-alerta" id="legenda-alerta">Esquerda → Raiz → Direita (Garante a ordem alfabética).</p>
+            </div>
+
+            <!-- Lista de Resultados (Java injeta os dados) -->
+            <div id="lista-travessia" class="d-flex flex-column gap-3"></div>
+
+            <!-- Paginação -->
+            <div id="paginacao-travessias" class="paginacao-wrapper"></div>
+
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="travessias.js" defer></script>
+</body>
+
+</html>

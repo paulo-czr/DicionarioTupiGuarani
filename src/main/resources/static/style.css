@@ -1,0 +1,233 @@
+:root {
+    --verde-mata: #2F5233;
+    --verde-folha: #6B8F5A;
+    --verde-musgo: #6E7A3F;
+    --marrom-terra: #7C5A3A;
+    --marrom-escuro: #4A3728;
+    --dourado-sol: #C68E17;
+    --areia: #FBF7F0;
+    --areia-forte: #F0EADD;
+    --texto-suave: #6B5B4D;
+}
+
+body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; background-color: var(--areia); }
+
+
+.navbar { 
+    background-color: white !important; 
+    border-bottom: 1px solid #ece4d6; 
+    padding: 0.8rem 1.5rem; 
+    box-shadow: 0 4px 12px rgba(47, 82, 51, 0.15); 
+}
+
+.logo-icone {
+    background-color: var(--verde-mata);
+    border-radius: 12px;
+    padding: 0.8rem 1.5rem; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.titulo-principal { color: var(--verde-mata); font-weight: 700; margin-bottom: 0; line-height: 1; font-size: 1.25rem; }
+.titulo-secundario { color: var(--marrom-terra); }
+.subtitulo { font-size: 0.65rem; color: var(--texto-suave); text-transform: uppercase; letter-spacing: 0.5px; }
+
+
+.nav-pills .nav-link {
+    color: var(--marrom-escuro);
+    background-color: var(--areia-forte);
+    border-radius: 12px;
+    font-weight: 500;
+    margin-left: 8px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+/* Sobrescrevendo a cor padrão do Bootstrap para o botão ativo 'INICIO'*/
+.nav-pills .nav-link.active {
+    background-color: var(--verde-mata) !important;
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(47, 82, 51, 0.25);
+}
+
+/* efeito ao passar o mouse nos outros botões para combinar */
+.nav-pills .nav-link:hover:not(.active) {
+    background-color: #e4eedb; 
+    color: var(--verde-mata);
+}
+
+/* --- MAIN RESPONSIVO --- */
+.conteudo-principal {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 80vh;
+    width: 100%;
+    text-align: center;
+    padding: clamp(40px, 8vh, 80px) 20px; 
+}
+
+.boas-vindas-wrapper { text-align: center; max-width: 800px; width: 100%; }
+
+.boas-vindas-titulo {
+    font-size: clamp(2rem, 10vw, 4rem); 
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.texto-verde { color: var(--verde-mata); }
+.texto-terra { color: var(--marrom-terra); }
+
+.boas-vindas-subtitulo {
+    color: var(--texto-suave);
+    font-size: clamp(0.95rem, 4vw, 1.2rem);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* --- MEDIA QUERIES PARA A NAV-BAR --- */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        margin-top: 1rem;
+    }
+    .nav-pills {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .nav-pills .nav-link {
+        margin-left: 0 !important;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* --- RODAPE --- */
+
+/* Estilo base das etiquetas */
+.etiqueta-customizada {
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+/* Cores específicas de cada funcionalidade */
+.etiqueta-insercao { background-color: #eaf3e4; color: #386641; }
+.etiqueta-pesquisa { background-color: #f1e9dc; color: #7c5a3a; }
+.etiqueta-remocao { background-color: #fbeae6; color: #9c3b2e; }
+.etiqueta-pre-ordem { background-color: #f2f1e1; color: #6e7a3f; }
+.etiqueta-em-ordem { background-color: #fbf2dc; color: #b4790f; }
+.etiqueta-pos-ordem { background-color: #efe3d3; color: #8b5e34; }
+.etiqueta-largura { background-color: #e9f0e3; color: #4c7a3d; }
+.etiqueta-profundidade { background-color: #f4ede2; color: #5c4326; }
+
+.rounded-4 {
+    border-radius: 1.25rem !important;
+}
+
+.shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+/* CONTADOR DE PALAVRAS */
+.status-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    width: 100%;           
+    margin-top: 2rem;       
+    margin-bottom: 3rem;   
+}
+
+.etiqueta-contador {
+    background: linear-gradient(90deg, var(--verde-mata) 0%, var(--verde-musgo) 50%, var(--dourado-sol) 100%);
+    color: white;
+    padding: 12px 35px;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(47, 82, 51, 0.25);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.numero-destaque {
+    font-weight: 600; 
+    font-size: 1.3rem; 
+}
+
+/* AJUSTE DOS CARDS DE FUNCIONALIDADE */
+.cartao-menu {
+    border-radius: 24px;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    box-shadow: 0 10px 20px rgba(74, 55, 40, 0.05);
+}
+
+.cartao-menu:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(74, 55, 40, 0.12);
+}
+
+/* Cores de Fundo dos Cards*/
+.cartao-verde { background-color: #eef3e7; }    
+.cartao-terra { background-color: #f3ebdf; }    
+.cartao-musgo { background-color: #f1f2e3; }    
+.cartao-dourado { background-color: #faf2dd; }    
+
+/* Estilo dos Ícones */
+.caixa-icone {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Cores dos Ícones*/
+.fundo-verde-icone { background: linear-gradient(135deg, #3e7b4f, #6b8f5a); }
+.fundo-terra-icone { background: linear-gradient(135deg, #7c5a3a, #a9784f); }
+.fundo-musgo-icone { background: linear-gradient(135deg, #6e7a3f, #98a35e); }
+.fundo-dourado-icone { background: linear-gradient(135deg, #c68e17, #e0b04a); }
+
+/* Texto e Link */
+.cartao-menu h4 {
+    font-size: 1.2rem;
+    color: var(--marrom-escuro);
+}
+
+.cartao-menu p {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    color: var(--texto-suave);
+}
+
+.botao-acessar {
+    text-decoration: none;
+    color: var(--marrom-escuro);
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap 0.2s, color 0.2s;
+}
+
+.botao-acessar:hover {
+    gap: 12px;
+    color: var(--verde-mata);
+}

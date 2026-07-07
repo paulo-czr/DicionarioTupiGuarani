@@ -1,0 +1,44 @@
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: dicionario-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: palavra2026
+      MYSQL_DATABASE: dicionario_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - dicionario_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-ppalavra2026"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+
+  app:
+    build: .
+    container_name: dicionario-app
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      # Aponta o Spring para o container do MySQL (nome do serviço = hostname na rede do compose)
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/dicionario_db?createDatabaseIfNotExist=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: palavra2026
+
+      # Garante que o banco sempre suba populado com o data.sql para fins de demonstração:
+      # - defer-datasource-initialization: espera o Hibernate criar as tabelas antes de rodar o data.sql
+      # - sql.init.mode=always: executa o data.sql toda vez que o container sobe
+      # - ddl-auto=create-drop: recria o schema do zero a cada start, evitando erro de dado duplicado
+      SPRING_JPA_DEFER_DATASOURCE_INITIALIZATION: "true"
+      SPRING_SQL_INIT_MODE: always
+      SPRING_JPA_HIBERNATE_DDL_AUTO: create-drop
+    ports:
+      - "3000:3000"
+
+volumes:
+  dicionario_mysql_data:

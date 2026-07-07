@@ -1,0 +1,236 @@
+body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; background-color: #FBF7F0; }
+
+:root {
+    --verde-mata: #2F5233;
+    --verde-folha: #6B8F5A;
+    --verde-musgo: #6E7A3F;
+    --marrom-terra: #7C5A3A;
+    --marrom-escuro: #4A3728;
+    --dourado-sol: #C68E17;
+    --areia: #FBF7F0;
+    --areia-forte: #F0EADD;
+    --texto-suave: #6B5B4D;
+}
+
+/* --- BARRA DE NAVEGACAO --- */
+
+.navbar { 
+    background-color: white !important; 
+    border-bottom: 1px solid #ece4d6; 
+    padding: 0.8rem 1.5rem; 
+    box-shadow: 0 4px 12px rgba(47, 82, 51, 0.15); 
+}
+
+.logo-icone {
+    background-color: var(--verde-mata);
+    border-radius: 12px;
+    padding: 0.8rem 1.5rem; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.titulo-principal { color: var(--verde-mata); font-weight: 700; margin-bottom: 0; line-height: 1; font-size: 1.25rem; }
+.titulo-secundario { color: var(--marrom-terra); }
+.subtitulo { font-size: 0.65rem; color: var(--texto-suave); text-transform: uppercase; letter-spacing: 0.5px; }
+
+
+.nav-pills .nav-link {
+    color: var(--marrom-escuro);
+    background-color: var(--areia-forte);
+    border-radius: 12px;
+    font-weight: 500;
+    margin-left: 8px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.nav-pills .nav-link.active {
+    background-color: var(--verde-mata) !important;
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(47, 82, 51, 0.25);
+}
+
+.nav-pills .nav-link:hover:not(.active) {
+    background-color: #e4eedb; 
+    color: var(--verde-mata);
+}
+
+
+/* --- CONTEUDO PRINCIPAL --- */
+
+.container-principal {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    min-height: 80vh;
+    width: 100%;
+    text-align: center;         
+    padding: clamp(40px, 8vh, 80px) 20px; 
+}
+
+.boas-vindas-wrapper { text-align: center; max-width: 800px; width: 100%; }
+
+.boas-vindas-titulo {
+    font-size: clamp(2rem, 10vw, 4rem); 
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.boas-vindas-subtitulo {
+    color: var(--texto-suave);
+    font-size: clamp(0.95rem, 4vw, 1.2rem);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* TITULO */
+
+/* Cor do titulo "Inserir Palavra" */
+.texto-verde-inserir {
+    color: var(--verde-mata) !important;
+    font-weight: 800; 
+}
+
+/* Container do Ícone do titulo na main */
+.container-icone-inserir {
+    background: linear-gradient(135deg, var(--verde-mata) 0%, var(--verde-folha) 100%);
+    border-radius: 12px; 
+    padding: 10px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(47, 82, 51, 0.2);
+}
+
+.boas-vindas-subtitulo.text-muted {
+    color: var(--texto-suave) !important; 
+}
+
+/* --- ESTILO DO CARTAO DE INSERÇÃO --- */
+
+.cartao-formulario {
+    background: #ffffff; 
+    border: 1px solid var(--areia-forte);
+    border-radius: 20px;
+    padding: 2.5rem;
+    width: 100% !important;
+    max-width: 950px !important; 
+    box-shadow: 0 4px 8px rgba(47, 82, 51, 0.12);
+}
+
+.titulo-formulario {
+    color: var(--verde-mata); 
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.form-label {
+    color: var(--marrom-escuro);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.entrada-customizada {
+    border-radius: 12px !important;
+    padding: 12px 16px !important;
+    border: 1.5px solid var(--areia-forte) !important;
+    transition: all 0.3s ease;
+}
+
+.entrada-customizada:focus {
+    border-color: var(--verde-folha) !important;
+    box-shadow: 0 0 0 4px rgba(107, 143, 90, 0.18) !important;
+    outline: none;
+}
+
+.btn-enviar-insercao {
+    background-color: var(--verde-mata) !important;
+    color: white !important;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-enviar-insercao:hover {
+    background-color: #244228 !important;
+    transform: translateY(-2px);
+}
+
+.btn-enviar-insercao:active {
+    transform: translateY(0);
+}
+
+/* --- ANIMAÇÃO PARA A MENSAGEM DE FEEDBACK --- */
+#mensagem-feedback:not(.d-none) {
+    animation: fadeIn 0.3s ease-in-out;
+    border-radius: 12px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- ESTILO Das palavras adicionadas --- */
+
+.cartao-palavra {
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.cartao-palavra:hover {
+    transform: translateY(-5px); 
+}
+
+.cartao-estatistica {
+    border-radius: 15px;
+    padding: 30px 20px;
+    text-align: center;
+    color: white;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(74, 55, 40, 0.15);
+}
+
+.cartao-estatistica:hover {
+    transform: translateY(-5px);
+}
+
+.numero-estatistica {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.rotulo-estatistica {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0;
+    opacity: 0.9;
+}
+
+/* Gradientes dos cards de estatística  */
+.gradiente-verde {
+    background: linear-gradient(135deg, #2F5233, #6B8F5A);
+}
+
+.gradiente-terra {
+    background: linear-gradient(135deg, #7C5A3A, #A9784F);
+}
+
+.gradiente-dourado {
+    background: linear-gradient(135deg, #C68E17, #E0B04A);
+}
