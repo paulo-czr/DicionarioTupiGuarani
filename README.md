@@ -150,7 +150,7 @@ Para parar:
 docker compose down
 ```
 
-> Detalhes sobre o comportamento do banco em modo Docker (recriação do schema a cada subida, pensado para demonstração) estão no [`README.md`](./README.md).
+> Detalhes sobre o comportamento do banco em modo Docker (recriação do schema a cada subida, pensado para demonstração) estão no [`README-DEPLOY.md`](./README-DEPLOY.md).
 
 ### Opção alternativa: execução manual (ambiente de desenvolvimento)
 
