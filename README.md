@@ -137,7 +137,7 @@ Base path: `/api/dicionario`
 **Pré-requisito:** [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado e em execução.
 
 ```bash
-git clone <url-do-repositorio>
+git clone [<url-do-repositorio>]
 cd DicionarioTupiGuarani
 docker compose up --build
 ```
@@ -150,7 +150,7 @@ Para parar:
 docker compose down
 ```
 
-> Detalhes sobre o comportamento do banco em modo Docker (recriação do schema a cada subida, pensado para demonstração) estão no [`README-DEPLOY.md`](./README-DEPLOY.md).
+> Detalhes sobre o comportamento do banco em modo Docker (recriação do schema a cada subida, pensado para demonstração) estão no [`README.md`](./README.md).
 
 ### Opção alternativa: execução manual (ambiente de desenvolvimento)
 
@@ -181,7 +181,7 @@ DicionarioTupiGuarani/
 │   └── application.properties
 ├── Dockerfile
 ├── docker-compose.yml
-└── README-DEPLOY.md
+└── README.md
 ```
 
 ---
